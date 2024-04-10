@@ -347,6 +347,7 @@ async function createUser() {
     await pb.collection('users').requestVerification(user.email);
     if (passwordMode.value === 0) {
         await pb.collection('users').requestPasswordReset(user.email);
+        await settings.setValueOfOtherUser(record.id, "oobe_password_set", { "success": true })
     } else if (passwordMode.value === 1) {
         await settings.setValueOfOtherUser(record.id, "oobe_init_password", user.password)
         displayed_username.value = user.username;
