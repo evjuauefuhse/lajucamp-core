@@ -322,21 +322,25 @@ async function nextStep() {
         // Check if passwords match
         if (password.value !== passwordRepeat.value) {
             errormessage.value = "Die Passwörter stimmen nicht überein."
+            submitting.value = false
             return
         }
         // Check if password is long enough
         if (password.value.length < 8) {
             errormessage.value = "Das Passwort muss mindestens 8 Zeichen lang sein."
+            submitting.value = false
             return
         }
         // Check if password contains special characters
         if (!password.value.match(/[^a-zA-Z0-9]/)) {
             errormessage.value = "Das Passwort muss mindestens ein Sonderzeichen enthalten."
+            submitting.value = false
             return
         }
         // Check if password contains numbers
         if (!password.value.match(/[0-9]/)) {
             errormessage.value = "Das Passwort muss mindestens eine Zahl enthalten."
+            submitting.value = false
             return
         }
 
