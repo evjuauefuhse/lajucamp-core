@@ -100,7 +100,7 @@
     end === null ||
     location === null ||
     category === null ||
-    submitting
+    submitting || (!isSameDate(new Date(start), new Date(end)))
     " @click="save()">
             <div v-if="submitting">
               <span v-if="submitting" class="loading loading-spinner loading-xs"></span>
@@ -154,6 +154,7 @@ definePageMeta({
 });
 const pb = usePocketBase();
 const data = ref(null);
+const taskStore = useAdminEventTasksStore()
 await getAllEvents();
 const categories = await pb.collection("categories").getFullList({
   sort: "name",
@@ -253,6 +254,7 @@ function edit(event) {
     team.value = event.team;
   }
   selectedId = event.id;
+  selectedIndex = getIndexById(event.id)
   action = 1;
   modalIsOpen.value = true;
   my_modal_1.showModal();
@@ -273,8 +275,9 @@ async function save() {
 }
 async function saveNew() {
   submitting.value = true;
-  const created = await pb.collection("events").create(assembleEvent());
-  await getAllEvents();
+  const created = await pb.collection("events").create(assembleEvent(), {expand: "team,category,location"});
+  data.value.push(created)
+  sort()
   submitting.value = false;
   closeDialog();
   return record;
@@ -282,8 +285,10 @@ async function saveNew() {
 
 async function saveEdited() {
   submitting.value = true;
-  const updated = await pb.collection("events").update(selectedId, assembleEvent());
-  await getAllEvents();
+  checkIfTask(selectedId)
+  const updated = await pb.collection("events").update(selectedId, assembleEvent(), {expand: "team,category,location"});
+  sort()
+  data.value[selectedIndex] = updated
   submitting.value = false;
   closeDialog();
 }
@@ -302,6 +307,7 @@ function closeDeleteDialog() {
 
 async function confirmDelete() {
   submitting.value = true;
+  taskStore.del(selectedId)
   const record = await pb.collection("events").getOne(selectedId, {});
   console.log(record);
   await pb.collection("events").delete(record.id);
@@ -319,5 +325,27 @@ function getIndexById(id) {
     return object.id === id;
   });
   return index
+}
+
+function isSameDate(date1, date2) {
+    return (
+        date1.getFullYear() === date2.getFullYear() &&
+        date1.getMonth() === date2.getMonth() &&
+        date1.getDate() === date2.getDate()
+    );
+}
+
+function checkIfTask(id) {
+  taskStore.del(id)
+  if(!isSameDate(new Date(start.value), new Date(end.value))) {
+    taskStore.add(id, "SPANS_MULTIPLE_DAYS")
+  } else {
+    taskStore.del(id)
+  }
+}
+
+function sort() {
+    // Sort the list of objects by the "start" property
+    data.value.sort((a, b) => new Date(a.start) - new Date(b.start));
 }
 </script>

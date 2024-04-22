@@ -17,10 +17,10 @@
                                 Vergangene Veranstaltungen
                             </div>
                             <div class="collapse-content">
-                                <EventListEntry v-for="event in item.events.past" :key="event.id" :item="event" />
+                                <EventListEntry v-for="event in item.events.past" v-show="!(isSameDate(new Date(event.start), new Date(event.end)))" :key="event.id" :item="event" />
                             </div>
                         </div>
-                        <EventListEntry v-if="item.events.scheduled.length > 0" v-for="event in item.events.scheduled"
+                        <EventListEntry v-if="item.events.scheduled.length > 0" v-for="event in item.events.scheduled" v-show="isSameDate(new Date(event.start), new Date(event.end))"
                             :key="event.id" :item="event" />
                         <div class="flex flex-col justify-start" v-else>
                             <div class="max-w-md text-center">
@@ -73,5 +73,13 @@ function onSwipe(details) {
 
 function initSwiper(sw) {
     swiper.value = sw
+}
+
+function isSameDate(date1, date2) {
+    return (
+        date1.getFullYear() === date2.getFullYear() &&
+        date1.getMonth() === date2.getMonth() &&
+        date1.getDate() === date2.getDate()
+    );
 }
 </script>

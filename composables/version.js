@@ -1,11 +1,18 @@
 export const useVersion = () => {
-    return "1.6.0 (Preview)"
+    return "1.6.0 Beta 2"
 }
 
 export const useChangelog = () => {
     return [
         {
-            date: "Januar 2023 - Version 1.6.0",
+            date: "22. April 2024 - Version 1.6.0 Beta 2",
+            changes: [
+                "Added: Aufgabenbereich im Admin interface",
+                "Fix: Performance Probleme bei der Veranstaltungsverwaltung behoben"
+            ],
+        },
+        {
+            date: "Januar 2024 bis März 2024 - Version 1.6.0 Beta 1",
             changes: [
                 "Added: Berechtigungsschlüssel können nun per QR-Code gescannt werden.",
                 "Added: Das Logo der Heinrich Damman Stiftung kann ausgeblendet werden, wenn die Veranstaltung nicht von der Stiftung unterstützt wird.",
