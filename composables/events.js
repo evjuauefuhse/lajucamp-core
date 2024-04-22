@@ -36,33 +36,37 @@ export const useEventManager = () => {
     function groupEventsByDay(events) {
         // Create an object to hold the grouped events
         const groupedEvents = {};
-
+    
         // Iterate through the list of events
         events.forEach(event => {
             // Convert the ISO string to a Date object
             const eventDate = new Date(event.end);
-
+    
             const dayOfWeek = eventDate.toLocaleDateString('de-DE', { weekday: 'short' });
-
+    
             // Check if the day exists in the groupedEvents object, and if not, initialize it as an empty array
             if (!groupedEvents[dayOfWeek]) {
                 groupedEvents[dayOfWeek] = { "past": [], "scheduled": [] };
             }
-            const today = new Date()
+    
             // Add the event to the corresponding day
-            if (eventDate.getTime() < today.getTime()) {
+            if (eventDate.getTime() < Date.now()) {
                 groupedEvents[dayOfWeek].past.push(event);
             } else {
                 groupedEvents[dayOfWeek].scheduled.push(event);
             }
         });
-
-        // Convert the groupedEvents object into an array of objects
-        const result = Object.keys(groupedEvents).map(day => ({
-            day,
-            events: groupedEvents[day],
-        }));
-
+    
+        // Convert the groupedEvents object into an array of objects and sort by eventDay
+        const result = Object.keys(groupedEvents)
+            .map(day => ({
+                day,
+                events: groupedEvents[day],
+            }))
+            .sort((a, b) => a.day.localeCompare(b.day));
+            // This is quite hacky and only works because (by chance) alphabetically sorting
+            // the list actually gives the correct order 
+            // since Lajucamp only goes from friday to sunday.
         return result;
     }
 

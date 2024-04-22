@@ -49,17 +49,16 @@
 <script setup>
 const eventManager = useEventManager()
 const records = ref(null)
-const recordsSkipPast = ref(null)
 const skipPast = ref(true)
 const loading = ref(true)
 const today = new Date().toLocaleDateString('de-DE', { weekday: 'short' });
 const activeTab = ref(0)
 const swiper = ref(null)
+
 onMounted(async () => {
-    recordsSkipPast.value = await eventManager.getDayList(true)
     records.value = await eventManager.getDayList()
     loading.value = false
-
+    console.log(records.value)
 })
 
 function setTab(index) {
