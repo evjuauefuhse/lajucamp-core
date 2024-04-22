@@ -8,7 +8,8 @@ export const useChangelog = () => {
             date: "22. April 2024 - Version 1.6.0 Beta 2",
             changes: [
                 "Added: Aufgabenbereich im Admin interface",
-                "Fix: Performance Probleme bei der Veranstaltungsverwaltung behoben"
+                "Fix: Performance Probleme bei der Veranstaltungsverwaltung behoben",
+                "Change: Neues Design auf der Login Seite"
             ],
         },
         {
