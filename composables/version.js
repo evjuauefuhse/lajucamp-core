@@ -5,6 +5,12 @@ export const useVersion = () => {
 export const useChangelog = () => {
     return [
         {
+            date: "23. April 2024 - Version 1.6.0 Beta 3",
+            changes: [
+                "Added: Veranstaltungen können nun gefiltert werden."
+            ],
+        },
+        {
             date: "22. April 2024 - Version 1.6.0 Beta 2",
             changes: [
                 "Added: Aufgabenbereich im Admin interface",
