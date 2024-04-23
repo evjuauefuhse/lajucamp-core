@@ -20,7 +20,7 @@
           Zur alten Login-Maske
         </button>
       <div class="relative hidden h-full flex-col bg-muted p-10 text-base-100 lg:flex">
-        <div class="absolute inset-0 bg-neutral flex items-center justify-center">
+        <div class="absolute inset-0 bg-primary flex items-center justify-center">
           <svg width="512" class="fill-base-300 h-80 w-80" height="512" viewBox="0 0 512 512">
             <path
               style="stroke-width:1.11769"
