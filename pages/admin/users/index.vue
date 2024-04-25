@@ -122,6 +122,14 @@
                             <input type="checkbox" v-model="managePosts" class="checkbox" />
                         </label>
                         <label class="label cursor-pointer">
+                            <span class="label-text">Berechtigungsschlüssel verwalten</span>
+                            <input type="checkbox" v-model="manageKeys" class="checkbox" />
+                        </label>
+                        <label class="label cursor-pointer">
+                            <span class="label-text">Seiten verwalten</span>
+                            <input type="checkbox" v-model="managePages" class="checkbox" />
+                        </label>
+                        <label class="label cursor-pointer">
                             <span class="label-text">Alle Sprengel verwalten</span>
                             <input type="checkbox" v-model="manageTeams" class="checkbox" />
                         </label>
@@ -246,6 +254,8 @@ const manageWelcome = ref(false);
 const managePosts = ref(false);
 const manageTeams = ref(false);
 const manageUsers = ref(false);
+const managePages = ref(false);
+const manageKeys = ref(false);
 
 // 0: Send reset mail, 1: Change password on first login
 const passwordMode = ref(0)
@@ -282,6 +292,8 @@ function reset() {
     managePosts.value = false;
     manageTeams.value = false;
     manageUsers.value = false;
+    manageKeys.value = false;
+    managePages.value = false;
     action.value = -1;
     submitting.value = false;
     error.value = false;
@@ -320,6 +332,8 @@ function assembleNewUser() {
         managePosts: managePosts.value,
         manageTeams: manageTeams.value,
         manageUsers: manageUsers.value,
+        manageKeys: manageKeys.value,
+        managePages: managePages.value,
         superadmin: false,
         emailVisibility: false,
         password: password,
@@ -377,6 +391,8 @@ function edit(user) {
     managePosts.value = user.managePosts;
     manageTeams.value = user.manageTeams;
     manageUsers.value = user.manageUsers;
+    managePages.value = user.managePages;
+    manageKeys.value = user.manageKeys;
     create_modal.showModal();
 }
 
@@ -394,6 +410,8 @@ function assembleEditedUser() {
         managePosts: managePosts.value,
         manageTeams: manageTeams.value,
         manageUsers: manageUsers.value,
+        manageKeys: manageKeys.value,
+        managePages: managePages.value,
         superadmin: false,
         emailVisibility: false,
     };

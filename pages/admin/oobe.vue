@@ -392,8 +392,17 @@ function getPermissions() {
     if (pb.authStore.model.manageTeams) {
         result.push("Alle Sprengel verwalten")
     }
-    if (pb.authStore.model.superadmin) {
+    if (pb.authStore.model.manageUsers) {
         result.push("Alle Benutzer verwalten")
+    }
+    if (pb.authStore.model.manageKeys) {
+        result.push("Alle Berechtigungsschlüssel verwalten")
+    }
+    if (pb.authStore.model.managePages) {
+        result.push("Alle Seiten verwalten")
+    }
+    if (pb.authStore.model.superadmin) {
+        result.push("Entwicklereinstellungen ändern")
     }
     return result
 }
