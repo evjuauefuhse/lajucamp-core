@@ -186,7 +186,7 @@ export const useContributors = () => {
             initials: "AB",
             name: "Anna Brandt",
             tag: "EvJu Celle",
-            job: "Testerin und Begleitung für IOS",
+            job: "Begleitung für IOS",
             insta: "https://instagram.com/anna.c.brandt",
             color: "bg-secondary",
         },
@@ -220,6 +220,13 @@ export const useContributors = () => {
             tag: "Laju",
             job: "Projektbegleitung",
             color: "bg-yellow-600"
-        }
+        },
+        {
+            initials: "SS",
+            name: "Sophie Schulz",
+            tag: "EvJu Burgdorf",
+            job: "Begleitung für IOS",
+            color: "bg-green-600"
+        },
     ]
 }
