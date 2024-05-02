@@ -5,6 +5,7 @@
             <slot />
         </main>
         <LayoutBottomNavigation :class="assembleNavbarClass()" />
+        <div v-if="shouldShiftNavbar()" class="fixed bottom-0 left-0 min-h-4 h-4 w-full bg-base-100 z-10"></div>
     </LayoutThemeHelper>
 </template>
 

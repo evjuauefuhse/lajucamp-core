@@ -1,9 +1,16 @@
 export const useVersion = () => {
-    return "1.6.0 Beta 2"
+    return "1.6.0 Beta 4"
 }
 
 export const useChangelog = () => {
     return [
+        {
+            date: "02. Mai 2024 - Version 1.6.0 Beta 4",
+            changes: [
+                "Fix: Auf iPhones ist die Navigationsleiste nicht mehr transparent",
+                "Fix: Auf iPhones wird die Installationskarte nicht mehr angezeigt, wenn die WebView App genutzt wird."
+            ],
+        },
         {
             date: "23. April 2024 - Version 1.6.0 Beta 3",
             changes: [
