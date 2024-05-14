@@ -5,7 +5,7 @@ export const usePocketBase = () => {
     const config = useRuntimeConfig();
     const pb = new PocketBase(config.public.pocketbaseUrl);
 
-    const cookie = useCookie('pb_auth', {
+    /*const cookie = useCookie('pb_auth', {
         path:     '/',
         secure:   true,
         sameSite: 'strict',
@@ -30,7 +30,7 @@ export const usePocketBase = () => {
       } catch (_) {
           // clear the auth store on failed refresh
           pb.authStore.clear();
-      }
+      }*/
 
       return pb
 }
