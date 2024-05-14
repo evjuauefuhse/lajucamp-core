@@ -1,9 +1,17 @@
 export const useVersion = () => {
-    return "1.6.0 Beta 4"
+    return "1.6.0 Beta 5"
 }
 
 export const useChangelog = () => {
     return [
+        {
+            date: "15. Mai 2024 - Version 1.6.0 Beta 5",
+            changes: [
+                "Feat: Im Adminbereich können nun Seiten angelegt werden",
+                "Feat: Formatierte Fehlermeldungen",
+                "Fix: Layout im Adminbereich ragt nicht mehr über den Rahmen hinaus."
+            ]
+        },
         {
             date: "02. Mai 2024 - Version 1.6.0 Beta 4",
             changes: [
