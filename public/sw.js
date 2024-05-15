@@ -2,16 +2,32 @@ const options = <%= JSON.stringify(options) %>
 
     importScripts(options.workboxUrl)
 
-console.log("Custom Worker! Ja!")
-
-self.addEventListener('install', () => self.skipWaiting())
-self.addEventListener('activate', () => self.clients.claim())
 
 const { registerRoute } = workbox.routing
 const { NetworkFirst, StaleWhileRevalidate, CacheFirst } = workbox.strategies
 const { CacheableResponsePlugin } = workbox.cacheableResponse
 const { ExpirationPlugin } = workbox.expiration
 const { precacheAndRoute } = workbox.precaching
+
+const CACHE = "lajucamp-offline";
+
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
+
+workbox.routing.registerRoute(
+  new RegExp('/*'),
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: CACHE
+  })
+);
+
+
+self.addEventListener('install', () => {self.skipWaiting()})
+self.addEventListener('activate', () => self.clients.claim())
 
 // Cache page navigations (html) with a Network First strategy
 registerRoute(
@@ -71,3 +87,5 @@ registerRoute(
 if (options.preCaching.length) {
     precacheAndRoute(options.preCaching, options.cacheOptions)
 }
+
+
