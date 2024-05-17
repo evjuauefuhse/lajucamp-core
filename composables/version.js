@@ -1,9 +1,16 @@
 export const useVersion = () => {
-    return "1.6.0 Beta 5"
+    return "1.6.0 Beta 6"
 }
 
 export const useChangelog = () => {
     return [
+        {
+            date: "17. Mai 2024 - Version 1.6.0 Beta 7",
+            changes: [
+                "Feat: Filter bleiben zwischen Seitenwechseln bestehen.",
+                "Feat: Visuelle Rückmeldung, wenn Filter aktiviert sind.",
+            ]
+        },
         {
             date: "15. Mai 2024 - Version 1.6.0 Beta 5",
             changes: [

@@ -13,8 +13,8 @@
                 </div>
                 <div class="collapse-content">
                     <div class="flex flex-row space-x-3">
-                        <input type="checkbox" @click="showAllCategories()" :disabled="categoryFilter.length == 0" :checked="categoryFilter.length == 0" class="checkbox" />
-                        <div class="flex flex-col" @click="showAllCategories()">
+                        <input type="checkbox" @click="filter.showAllCategories()" :disabled="filter.categoryFilter.length == 0" :checked="filter.categoryFilter.length == 0" class="checkbox" />
+                        <div class="flex flex-col" @click="filter.showAllCategories()">
                             <h1 class="text-lg font-bold">alle anzeigen</h1>
                             <div class="flex gap-2 overflow-hidden text-ellipsis text-sm font-light">
                                 alle Kategorien werden ausgewählt.
@@ -22,8 +22,8 @@
                         </div>
                     </div>
                     <div class="flex flex-row space-x-3" v-for="category in categories">
-                        <input type="checkbox" @change="toggleCategory(category.id)" :checked="categoryFilter.includes(category.id)" class="checkbox" />
-                        <div @click="toggleCategory(category.id)" class="flex flex-col">
+                        <input type="checkbox" @change="filter.toggleCategory(category.id)" :checked="filter.categoryFilter.includes(category.id)" class="checkbox" />
+                        <div @click="filter.toggleCategory(category.id)" class="flex flex-col">
                             <h1 class="text-lg font-bold">{{ category.name }}</h1>
                             <div class="flex gap-2 overflow-hidden text-ellipsis text-sm font-light">
                                 {{ category.description }}
@@ -41,8 +41,8 @@
                 </div>
                 <div class="collapse-content">
                     <div class="flex flex-row space-x-3">
-                        <input type="checkbox" @click="showAllTeams()" :disabled="teamFilter.length == 0" :checked="teamFilter.length == 0" class="checkbox" />
-                        <div class="flex flex-col" @click="showAllTeams()">
+                        <input type="checkbox" @click="filter.showAllTeams()" :disabled="filter.teamFilter.length == 0" :checked="filter.teamFilter.length == 0" class="checkbox" />
+                        <div class="flex flex-col" @click="filter.showAllTeams()">
                             <h1 class="text-lg font-bold">alle anzeigen</h1>
                             <div class="flex gap-2 overflow-hidden text-ellipsis text-sm font-light">
                                 alle Sprengel werden ausgewählt.
@@ -50,8 +50,8 @@
                         </div>
                     </div>
                     <div class="flex flex-row space-x-3" v-for="team in teams">
-                        <input type="checkbox" @change="toggleTeam(team.id)" :checked="teamFilter.includes(team.id)" class="checkbox" />
-                        <div @click="toggleTeam(team.id)" class="flex flex-col">
+                        <input type="checkbox" @change="filter.toggleTeam(team.id)" :checked="filter.teamFilter.includes(team.id)" class="checkbox" />
+                        <div @click="filter.toggleTeam(team.id)" class="flex flex-col">
                             <h1 class="text-lg font-bold pb-3">{{ team.name }}</h1>
                         </div>
                     </div>
@@ -66,8 +66,8 @@
                 </div>
                 <div class="collapse-content">
                     <div class="flex flex-row space-x-3">
-                        <input type="checkbox" @click="showAllLocations()" :disabled="locationFilter.length == 0" :checked="locationFilter.length == 0" class="checkbox" />
-                        <div class="flex flex-col" @click="showAllLocations()">
+                        <input type="checkbox" @click="filter.showAllLocations()" :disabled="filter.locationFilter.length == 0" :checked="filter.locationFilter.length == 0" class="checkbox" />
+                        <div class="flex flex-col" @click="filter.showAllLocations()">
                             <h1 class="text-lg font-bold">alle anzeigen</h1>
                             <div class="flex gap-2 overflow-hidden text-ellipsis text-sm font-light">
                                 alle Orte werden ausgewählt.
@@ -75,8 +75,8 @@
                         </div>
                     </div>
                     <div class="flex flex-row space-x-3" v-for="location in locations">
-                        <input type="checkbox" @change="toggleLocation(location.id)" :checked="locationFilter.includes(location.id)" class="checkbox" />
-                        <div @click="toggleLocation(location.id)" class="flex flex-col">
+                        <input type="checkbox" @change="filter.toggleLocation(location.id)" :checked="filter.locationFilter.includes(location.id)" class="checkbox" />
+                        <div @click="filter.toggleLocation(location.id)" class="flex flex-col">
                             <h1 class="text-lg font-bold pb-3">{{ location.name }}</h1>
                         </div>
                     </div>
@@ -100,7 +100,11 @@
         <div v-else class="skeleton h-8 w-28">
 
         </div>
-        <button :disabled="loading" class="btn btn-ghost btn-sm" onclick="my_modal_1.showModal()">Filter</button>
+        <div class="indicator">
+            <span v-show="filter.categoryFilter.length + filter.locationFilter.length + filter.teamFilter.length !== 0" class="indicator-item indicator-start badge badge-secondary">{{ filter.categoryFilter.length + filter.locationFilter.length + filter.teamFilter.length }}</span> 
+            <button :disabled="loading" class="btn btn-ghost btn-sm" onclick="my_modal_1.showModal()">Filter</button>
+        </div>
+
     </div>
     <div v-show="!loading">
         <div v-if="records != null">
@@ -113,10 +117,10 @@
                                 Vergangene Veranstaltungen
                             </div>
                             <div class="collapse-content">
-                                <EventListEntry v-for="event in item.events.past" v-show="(isSameDate(new Date(event.start), new Date(event.end))) && (categoryFilter.length === 0 || categoryFilter.includes(event.expand.category.id)) && (locationFilter.length === 0 || locationFilter.includes(event.expand.location.id)) && (teamFilter.length === 0 || teamFilter.includes(event.team))" :key="event.id" :item="event" />
+                                <EventListEntry v-for="event in item.events.past" v-show="(isSameDate(new Date(event.start), new Date(event.end))) && (filter.categoryFilter.length === 0 || filter.categoryFilter.includes(event.expand.category.id)) && (filter.locationFilter.length === 0 || filter.locationFilter.includes(event.expand.location.id)) && (filter.teamFilter.length === 0 || filter.teamFilter.includes(event.team))" :key="event.id" :item="event" />
                             </div>
                         </div>
-                        <EventListEntry v-if="item.events.scheduled.length > 0" v-for="event in item.events.scheduled" v-show="(isSameDate(new Date(event.start), new Date(event.end))) && (categoryFilter.length === 0 || categoryFilter.includes(event.expand.category.id)) && (locationFilter.length === 0 || locationFilter.includes(event.expand.location.id)) && (teamFilter.length === 0 || teamFilter.includes(event.team))"
+                        <EventListEntry v-if="item.events.scheduled.length > 0" v-for="event in item.events.scheduled" v-show="(isSameDate(new Date(event.start), new Date(event.end))) && (filter.categoryFilter.length === 0 || filter.categoryFilter.includes(event.expand.category.id)) && (filter.locationFilter.length === 0 || filter.locationFilter.includes(event.expand.location.id)) && (filter.teamFilter.length === 0 || filter.teamFilter.includes(event.team))"
                             :key="event.id" :item="event" />
                         <div class="flex flex-col justify-start" v-else>
                             <div class="max-w-md text-center">
@@ -151,17 +155,16 @@ const today = new Date().toLocaleDateString('de-DE', { weekday: 'short' });
 const activeTab = ref(0)
 const swiper = ref(null)
 
-const categoryFilter = ref([])
 const categoryManager = useCategoryManager()
 const categories = ref(null);
 
-const locationFilter = ref([])
 const locationManager = useLocationManager()
 const locations = ref(null);
 
-const teamFilter = ref([])
 const teamManager = useTeamManager()
 const teams = ref(null);
+
+const filter = useEventFilters()
 
 onMounted(async () => {
     records.value = await eventManager.getDayList()
@@ -193,46 +196,5 @@ function isSameDate(date1, date2) {
     );
 }
 
-function showAllCategories() {
-    if(categoryFilter.value.length > 0) {
-        categoryFilter.value = []
-    }
-}
-
-function toggleCategory(id) {
-    if(categoryFilter.value.includes(id)) {
-        categoryFilter.value = categoryFilter.value.filter(function(e) { return e !== id })
-    } else {
-        categoryFilter.value.push(id)
-    }
-}
-
-function showAllLocations() {
-    if(locationFilter.value.length > 0) {
-        locationFilter.value = []
-    }
-}
-
-function toggleLocation(id) {
-    if(locationFilter.value.includes(id)) {
-        locationFilter.value = locationFilter.value.filter(function(e) { return e !== id })
-    } else {
-        locationFilter.value.push(id)
-    }
-}
-
-function showAllTeams() {
-    if(teamFilter.value.length > 0) {
-        teamFilter.value = []
-    }
-}
-
-function toggleTeam(id) {
-    if(teamFilter.value.includes(id)) {
-        teamFilter.value = teamFilter.value.filter(function(e) { return e !== id })
-    } else {
-        teamFilter.value.push(id)
-    }
-}
 
 </script>
