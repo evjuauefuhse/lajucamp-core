@@ -5,6 +5,13 @@ export const useVersion = () => {
 export const useChangelog = () => {
     return [
         {
+            date: "20. Mai 2024 - Version 1.6.0 Beta 8",
+            changes: [
+                "Feat: Events können nun als Favoriten markiert werden. Nur Favoriten werden auf der Startseite angezeigt.",
+                "Feat: Die App verlinkt nun auf ihren Quellcode."
+            ]
+        },
+        {
             date: "17. Mai 2024 - Version 1.6.0 Beta 7",
             changes: [
                 "Feat: Filter bleiben zwischen Seitenwechseln bestehen.",

@@ -1,7 +1,6 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
     const pb = usePocketBase()
     if (pb.authStore.isValid === false) {
-        console.log(to)
         return navigateTo({
             path: "/admin/login",
             query: {
