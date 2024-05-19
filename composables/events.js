@@ -3,6 +3,7 @@ import { useLocalStorage } from "@vueuse/core"
 export const useEventManager = () => {
     const pb = usePocketBase()
     const storage = useLocalStorage("eventStore", { updated: null, items: [] })
+    const favorites = useFavorites()
 
     async function getInternalEventList() {
         const response = await pb.collection('events').getFullList({
@@ -98,6 +99,14 @@ export const useEventManager = () => {
         },
         getUpcomingHomepageEvents: async (limit = -1) => {
             const data = (await getEventList()).items.filter(obj => ((new Date(obj.end)).getTime() > (new Date()).getTime() && !obj.homepage_ignore))
+            if (limit === -1) {
+                return data
+            } else {
+                return data.slice(0, limit);
+            }
+        },
+        getUpcomingHomepageFavoriteEvents: async (limit = -1) => {
+            const data = (await getEventList()).items.filter(obj => ((new Date(obj.end)).getTime() > (new Date()).getTime() && !obj.homepage_ignore && favorites.isFavorite(obj.id)))
             if (limit === -1) {
                 return data
             } else {

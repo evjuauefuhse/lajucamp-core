@@ -121,7 +121,7 @@
                             </div>
                         </div>
                         <EventListEntry v-if="item.events.scheduled.length > 0" v-for="event in item.events.scheduled" v-show="(isSameDate(new Date(event.start), new Date(event.end))) && (filter.categoryFilter.length === 0 || filter.categoryFilter.includes(event.expand.category.id)) && (filter.locationFilter.length === 0 || filter.locationFilter.includes(event.expand.location.id)) && (filter.teamFilter.length === 0 || filter.teamFilter.includes(event.team))"
-                            :key="event.id" :item="event" />
+                            :key="event.id" :item="event" :showFavoriteButton="true" />
                         <div class="flex flex-col justify-start" v-else>
                             <div class="max-w-md text-center">
                                 <h1 class="text-xl">Das war's für heute!</h1>
