@@ -3,6 +3,7 @@ import { useLocalStorage } from "@vueuse/core"
 
 export const useUserSettings = defineStore('userSettingsStore', () => {
     const settings = useLocalStorage("userSettingsStore", {})
+    const tempSettings = ref({})
 
     function set(key, value) {
         settings.value[key] = value
@@ -22,7 +23,25 @@ export const useUserSettings = defineStore('userSettingsStore', () => {
         }
     }
 
+    function setTemp(key, value) {
+        tempSettings.value[key] = value
+    }
+
+    function delTemp(key) {
+        if(Object.hasOwn(tempSettings.value, key)) {
+            delete tempSettings.value[key]
+        }
+    }
+
+    function getTemp(key) {
+        if(Object.hasOwn(tempSettings.value, key)) {
+            return tempSettings.value[key]
+        } else {
+            return undefined
+        }
+    }
 
 
-    return { set, del, get }
+
+    return { set, del, get, setTemp, delTemp, getTemp }
   })
