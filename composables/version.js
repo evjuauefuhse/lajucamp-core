@@ -1,9 +1,15 @@
 export const useVersion = () => {
-    return "1.6.0 Beta 6"
+    return "1.6.0 Beta 9"
 }
 
 export const useChangelog = () => {
     return [
+        {
+            date: "25. Mai 2024 - Version 1.6.0 Beta 9",
+            changes: [
+                "Feat: Beim zurück Navigieren in der Eventliste bleibt der Tag ausgewählt."
+            ]
+        },
         {
             date: "20. Mai 2024 - Version 1.6.0 Beta 8",
             changes: [
