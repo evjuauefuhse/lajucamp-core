@@ -19,7 +19,7 @@ self.addEventListener("message", (event) => {
 });
 
 workbox.routing.registerRoute(
-  new RegExp('/*'),
+  new RegExp('^(?!.*\\/api).*'),
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: CACHE
   })
@@ -68,6 +68,12 @@ registerRoute(
             new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 30 })
         ]
     })
+)
+
+// Prevent caching of API requests
+registerRoute(
+    ({ url }) => url.pathname.includes('/api'),
+    new NetworkOnly()
 )
 
 
