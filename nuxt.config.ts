@@ -7,6 +7,7 @@ export default defineNuxtConfig({
       plugins: [
         require("daisyui"),
         require('@tailwindcss/typography'),
+        '~/plugins/update-sw.js'
       ],
       daisyui: {
         themes: [
