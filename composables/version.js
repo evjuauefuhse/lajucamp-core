@@ -1,9 +1,17 @@
 export const useVersion = () => {
-    return "1.6.0 Beta 9"
+    return "1.6.0 Beta 10"
 }
 
 export const useChangelog = () => {
     return [
+        {
+            date: "26. Mai 2024 - Version 1.6.0 Beta 10",
+            changes: [
+                "Feat: Entwickleroptionen",
+                "Hotfix: Alle 2 Stunden wird der Cache automatisch gelöscht.",
+                "Hotfix: Der ServiceWorker verhindert nicht mehr das aktualisiseren des Caches - hoffentlich."
+            ]
+        }
         {
             date: "25. Mai 2024 - Version 1.6.0 Beta 9",
             changes: [
