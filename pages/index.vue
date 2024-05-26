@@ -19,4 +19,28 @@ const online = useOnline()
 if (route.query.standalone === 'true') {
     cookie.value = true
 }
+const settings = useUserSettings()
+
+function checkAge(date) {
+  // Get the current date and time
+  const now = new Date();
+  
+  // Get the timestamp for two hours ago
+  const twoHoursAgo = new Date(now.getTime() - (2 * 60 * 60 * 1000));
+  
+  // Compare the provided date with the timestamp for two hours ago
+  return date < twoHoursAgo;
+}
+
+if(online.value) {
+    if(settings.get("lastCacheUpdate") === undefined) {
+        await updateAllCaches()
+        console.log("Updating all caches.")
+    } else {
+        if(checkAge(settings.get("lastCacheUpdate"))) {
+            await updateAllCaches()
+            console.log("Updating all caches.")
+        }
+    }
+}
 </script>
