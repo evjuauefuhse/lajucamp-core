@@ -7,7 +7,6 @@ export default defineNuxtConfig({
       plugins: [
         require("daisyui"),
         require('@tailwindcss/typography'),
-        '~/plugins/update-sw.js'
       ],
       daisyui: {
         themes: [
@@ -122,7 +121,7 @@ export default defineNuxtConfig({
       purpose: 'maskable'
     },
     workbox: {
-      templatePath: '@/public/sw.js',
+      templatePath: '@/public/serviceworker.js',
       offlinePage: '/404.html',
       globPatterns: ['**/*.{js,css}'],
       offline: true,
