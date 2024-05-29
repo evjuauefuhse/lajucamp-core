@@ -1,6 +1,6 @@
 <template>
     <CardLikeContainer>
         <h1 class="text-3xl pb-3">News</h1>
-        <NewsList />
+        <NewsList class="mb-2.5" />
     </CardLikeContainer>
 </template>
