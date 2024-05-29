@@ -1,9 +1,15 @@
 export const useVersion = () => {
-    return "1.6.0 Beta 10"
+    return "1.6.0 Beta 11"
 }
 
 export const useChangelog = () => {
     return [
+        {
+            date: "29. Mai 2024 - Version 1.6.0 Beta 11",
+            changes: [
+                "Fix: Im Adminbereich wird die Berechtigungswarnung zur Veranstaltungsverwaltung nicht mehr dauerhaft angezeigt."
+            ]
+        },
         {
             date: "26. Mai 2024 - Version 1.6.0 Beta 10",
             changes: [

@@ -231,7 +231,7 @@
   </AdminLayoutHeader>
   <div class="pl-3">
     <div class="overflow-x-auto">
-      <AdminHighPermissionWarning
+      <AdminHighPermissionWarning v-if="pb.authStore.model.manageAllEvents"
         reason="Du bist berechtigt, Veranstaltungen aller Sprengel zu bearbeiten."
       />
       <AdminEventList :data="data" @delete="deleteDialog" @edit="edit" />
