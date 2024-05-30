@@ -173,7 +173,7 @@ onMounted(async () => {
     categories.value = await categoryManager.getList()
     locations.value = await locationManager.getList()
     teams.value = await teamManager.getList()
-    let tab = settings.getTemp("tab")
+    let tab = settings.get("tab")
     if(tab !== undefined) {
         activeTab.value = tab
         swiper.value.slideTo(tab, 200, false)
@@ -183,7 +183,7 @@ onMounted(async () => {
 })
 
 function setTab(index) {
-    settings.setTemp("tab", index)
+    settings.set("tab", index)
     activeTab.value = index
     console.log(swiper.value)
     swiper.value.slideTo(index, 200, false)
