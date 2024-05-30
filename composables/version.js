@@ -1,9 +1,15 @@
 export const useVersion = () => {
-    return "1.6.0 Beta 11"
+    return "1.6.0 Beta 12"
 }
 
 export const useChangelog = () => {
     return [
+        {
+            date: "31. Mai 2024 - Version 1.6.0 Beta 12",
+            changes: [
+                "Feat: vereinfachtes Liederbuch, dass auch mit schlechter Internetverbindung funkionieren sollte."
+            ]
+        },
         {
             date: "29. Mai 2024 - Version 1.6.0 Beta 11",
             changes: [

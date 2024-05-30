@@ -107,7 +107,8 @@ export default defineNuxtConfig({
       disableEvents: false,
       iosLink: '',
       androidLink: '',
-      theme: 'lajucamp24'
+      theme: 'lajucamp24',
+      fallbacksongs: true
     }
   },
   pwa: {
