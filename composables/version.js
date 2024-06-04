@@ -1,9 +1,15 @@
 export const useVersion = () => {
-    return "1.6.0 Beta 12"
+    return "1.6.0 Beta 13"
 }
 
 export const useChangelog = () => {
     return [
+        {
+            date: "04. Juni 2024 - Version 1.6.0 Beta 13",
+            changes: [
+                "Feat: Es gibt nun einen Bereich, um Fundstücke anzufordern."
+            ]
+        },
         {
             date: "31. Mai 2024 - Version 1.6.0 Beta 12",
             changes: [

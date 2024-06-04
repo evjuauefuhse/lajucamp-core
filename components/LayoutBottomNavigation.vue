@@ -91,7 +91,10 @@ const routes = {
         'misc-about-license',
         'misc-install',
         'misc-devel',
-        "pictures"
+        "pictures",
+        "lostandfound",
+        "lostandfound-claim-id",
+        "lostandfound-success"
     ]
 }
 
