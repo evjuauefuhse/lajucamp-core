@@ -30,8 +30,9 @@
           </svg>
         </div>
       </div>
-      <slot />
-
+      <div class="flex flex-row space-x-3 flex-row-reverse">
+        <slot />
+      </div>
     </div>
     <div class="pb-8" />
   </div>

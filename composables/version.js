@@ -1,11 +1,86 @@
 export const useVersion = () => {
-    return "1.6.0 (Preview)"
+    return "1.6.0 Beta 13"
 }
 
 export const useChangelog = () => {
     return [
         {
-            date: "Januar 2023 - Version 1.6.0",
+            date: "04. Juni 2024 - Version 1.6.0 Beta 13",
+            changes: [
+                "Feat: Es gibt nun einen Bereich, um Fundstücke anzufordern."
+            ]
+        },
+        {
+            date: "31. Mai 2024 - Version 1.6.0 Beta 12",
+            changes: [
+                "Feat: vereinfachtes Liederbuch, dass auch mit schlechter Internetverbindung funkionieren sollte."
+            ]
+        },
+        {
+            date: "29. Mai 2024 - Version 1.6.0 Beta 11",
+            changes: [
+                "Fix: Im Adminbereich wird die Berechtigungswarnung zur Veranstaltungsverwaltung nicht mehr dauerhaft angezeigt."
+            ]
+        },
+        {
+            date: "26. Mai 2024 - Version 1.6.0 Beta 10",
+            changes: [
+                "Feat: Entwickleroptionen",
+                "Hotfix: Alle 2 Stunden wird der Cache automatisch gelöscht.",
+                "Hotfix: Der ServiceWorker verhindert nicht mehr das aktualisiseren des Caches - hoffentlich."
+            ]
+        },
+        {
+            date: "25. Mai 2024 - Version 1.6.0 Beta 9",
+            changes: [
+                "Feat: Beim zurück Navigieren in der Eventliste bleibt der Tag ausgewählt."
+            ]
+        },
+        {
+            date: "20. Mai 2024 - Version 1.6.0 Beta 8",
+            changes: [
+                "Feat: Events können nun als Favoriten markiert werden. Nur Favoriten werden auf der Startseite angezeigt.",
+                "Feat: Die App verlinkt nun auf ihren Quellcode."
+            ]
+        },
+        {
+            date: "17. Mai 2024 - Version 1.6.0 Beta 7",
+            changes: [
+                "Feat: Filter bleiben zwischen Seitenwechseln bestehen.",
+                "Feat: Visuelle Rückmeldung, wenn Filter aktiviert sind.",
+            ]
+        },
+        {
+            date: "15. Mai 2024 - Version 1.6.0 Beta 5",
+            changes: [
+                "Feat: Im Adminbereich können nun Seiten angelegt werden",
+                "Feat: Formatierte Fehlermeldungen",
+                "Fix: Layout im Adminbereich ragt nicht mehr über den Rahmen hinaus."
+            ]
+        },
+        {
+            date: "02. Mai 2024 - Version 1.6.0 Beta 4",
+            changes: [
+                "Fix: Auf iPhones ist die Navigationsleiste nicht mehr transparent",
+                "Fix: Auf iPhones wird die Installationskarte nicht mehr angezeigt, wenn die WebView App genutzt wird."
+            ],
+        },
+        {
+            date: "23. April 2024 - Version 1.6.0 Beta 3",
+            changes: [
+                "Added: Veranstaltungen können nun gefiltert werden."
+            ],
+        },
+        {
+            date: "22. April 2024 - Version 1.6.0 Beta 2",
+            changes: [
+                "Added: Aufgabenbereich im Admin interface",
+                "Fix: Performance Probleme bei der Veranstaltungsverwaltung behoben",
+                "Change: Neues Design auf der Login Seite"
+            ],
+        },
+        {
+            date: "Januar 2024 bis März 2024 - Version 1.6.0 Beta 1",
             changes: [
                 "Added: Berechtigungsschlüssel können nun per QR-Code gescannt werden.",
                 "Added: Das Logo der Heinrich Damman Stiftung kann ausgeblendet werden, wenn die Veranstaltung nicht von der Stiftung unterstützt wird.",
@@ -172,7 +247,7 @@ export const useContributors = () => {
             initials: "AB",
             name: "Anna Brandt",
             tag: "EvJu Celle",
-            job: "Testerin und Begleitung für IOS",
+            job: "Begleitung für IOS",
             insta: "https://instagram.com/anna.c.brandt",
             color: "bg-secondary",
         },
@@ -206,6 +281,13 @@ export const useContributors = () => {
             tag: "Laju",
             job: "Projektbegleitung",
             color: "bg-yellow-600"
-        }
+        },
+        {
+            initials: "SS",
+            name: "Sophie Schulz",
+            tag: "EvJu Burgdorf",
+            job: "Begleitung für IOS",
+            color: "bg-green-600"
+        },
     ]
 }

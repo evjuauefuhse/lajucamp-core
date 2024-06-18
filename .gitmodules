@@ -1,0 +1,3 @@
+[submodule "pb-js-sdk"]
+	path = pb-js-sdk
+	url = https://github.com/evjukbu/pb-js-sdk.git

@@ -9,7 +9,7 @@
         <th>Start</th>
         <th>Ende</th>
         <th v-if="pb.authStore.model.manageAllEvents">Sprengel</th>
-        <th />
+        <th v-if="props.actions !== false"/>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +19,24 @@
             <div>
               <div class="font-bold">{{ event.name }}</div>
             </div>
+          </div>
+        </td>
+        <td>
+          <div class="badge badge-md badge-accent gap-2 badge-outline">
+            
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="w-5 h-5"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M5.5 3A2.5 2.5 0 003 5.5v2.879a2.5 2.5 0 00.732 1.767l6.5 6.5a2.5 2.5 0 003.536 0l2.878-2.878a2.5 2.5 0 000-3.536l-6.5-6.5A2.5 2.5 0 008.38 3H5.5zM6 7a1 1 0 100-2 1 1 0 000 2z"
+              clip-rule="evenodd"
+            />
+          </svg>
+            {{ event.expand.category.name }}
           </div>
         </td>
         <td>
@@ -35,24 +53,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-
-            {{ event.expand.category.name }}
-          </div>
-        </td>
-        <td>
-          <div class="badge badge-md badge-accent gap-2 badge-outline">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              class="w-5 h-5"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5.5 3A2.5 2.5 0 003 5.5v2.879a2.5 2.5 0 00.732 1.767l6.5 6.5a2.5 2.5 0 003.536 0l2.878-2.878a2.5 2.5 0 000-3.536l-6.5-6.5A2.5 2.5 0 008.38 3H5.5zM6 7a1 1 0 100-2 1 1 0 000 2z"
-                clip-rule="evenodd"
-              />
-            </svg>
+            
 
             {{ event.expand.location.name }}
           </div>
@@ -81,10 +82,10 @@
         </td>
         <td>
           <div v-if="event.team !== null && pb.authStore.model.manageAllEvents">
-            <TeamNote v-if="update_state === 0" :team="event.team" />
+            <div class="font-light">{{ event.expand.team.name }}</div>
           </div>
         </td>
-        <td class="flex flex-row space-x-1">
+        <td class="flex flex-row space-x-1" v-if="props.actions !== false">
           <button
             @click="$emit('edit', event)"
             class="group btn btn-square btn-ghost hover:bg-cyan-600"
@@ -147,12 +148,6 @@
   />
 </template>
 <script setup>
-const props = defineProps(["data"]);
+const props = defineProps(["data", "actions"]);
 const pb = usePocketBase();
-
-const update_state = ref(0)
-onUpdated(() => {
-  update_state.value = 1
-  update_state.value = 0
-});
 </script>

@@ -1,3 +1,0 @@
-<template>
-    Nothing here
-</template>

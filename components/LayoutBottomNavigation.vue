@@ -20,7 +20,7 @@
             <span class="btm-nav-label">Events</span>
         </router-link>
         <router-link v-show="checkMusicAccess()" :class="(routes.music.includes($route.name)) ? 'active' : 'not_active'"
-            to="/music">
+            :to="config.public.fallbacksongs ? '/songFallback' : '/music'">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -71,7 +71,9 @@ const routes = {
     ],
     music: [
         'music',
-        'music-id'
+        'music-id',
+        'songFallback',
+        'songFallback-id'
     ],
     news: [
         'posts',
@@ -88,7 +90,11 @@ const routes = {
         'misc-about-changelog',
         'misc-about-license',
         'misc-install',
-        "pictures"
+        'misc-devel',
+        "pictures",
+        "lostandfound",
+        "lostandfound-claim-id",
+        "lostandfound-success"
     ]
 }
 

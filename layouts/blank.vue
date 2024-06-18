@@ -1,6 +1,6 @@
 <template>
   <LayoutThemeHelper>
-    <main :data-theme="theme.getCurrentTheme()" class="content px-3 bg-base-300 relative pb-16">
+    <main :data-theme="theme.getCurrentTheme()" class="content relative">
       <slot />
     </main>
   </LayoutThemeHelper>

@@ -71,9 +71,11 @@ export const updateAllCaches = async () => {
     const pageManager = usePageManager()
     const welcomeManager = useWelcomeManager()
     const PostManager = usePostManager()
+    const songManager = useSongManager()
     await categoryManager.update()
     await eventManager.update()
     await pageManager.update()
     await welcomeManager.update()
     await PostManager.update()
+    await songManager.getList()
 }

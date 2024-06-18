@@ -13,7 +13,8 @@
             </label>
             <a class="btn btn-ghost text-xl">{{ runtimeConfig.public.title }} - Admin</a>
           </div>
-          <div class="navbar-end"></div>
+          <div class="navbar-end">
+          </div>
         </div>
       </div>
 
@@ -21,7 +22,7 @@
     </div>
     <div class="drawer-side">
       <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-      <ul class="menu menu-lg p-4 w-80 min-h-full bg-base-200 text-base-content flex flex-col justify-between">
+      <ul class="menu menu-lg w-80 min-h-full bg-base-200 text-base-content flex flex-col justify-between">
         <div>
           <!-- Sidebar content here -->
           <AdminSidebarUser />
@@ -35,6 +36,20 @@
               </svg>
 
               Dashboard</RouterLink>
+          </li>
+          <li>
+            <RouterLink :class="checkActiveMenu('admin-tasks')" to="/admin/tasks"><svg
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path
+                  d="M5.85 3.5a.75.75 0 0 0-1.117-1 9.719 9.719 0 0 0-2.348 4.876.75.75 0 0 0 1.479.248A8.219 8.219 0 0 1 5.85 3.5ZM19.267 2.5a.75.75 0 1 0-1.118 1 8.22 8.22 0 0 1 1.987 4.124.75.75 0 0 0 1.48-.248A9.72 9.72 0 0 0 19.266 2.5Z" />
+                <path fill-rule="evenodd"
+                  d="M12 2.25A6.75 6.75 0 0 0 5.25 9v.75a8.217 8.217 0 0 1-2.119 5.52.75.75 0 0 0 .298 1.206c1.544.57 3.16.99 4.831 1.243a3.75 3.75 0 1 0 7.48 0 24.583 24.583 0 0 0 4.83-1.244.75.75 0 0 0 .298-1.205 8.217 8.217 0 0 1-2.118-5.52V9A6.75 6.75 0 0 0 12 2.25ZM9.75 18c0-.034 0-.067.002-.1a25.05 25.05 0 0 0 4.496 0l.002.1a2.25 2.25 0 1 1-4.5 0Z"
+                  clip-rule="evenodd" />
+              </svg>
+
+
+              Aufgaben <span v-show="Object.keys(taskStore.tasks).length !== 0" class="badge badge-error">{{
+                Object.keys(taskStore.tasks).length }}</span></RouterLink>
           </li>
           <li>
             <RouterLink :class="checkActiveMenu('admin-events')" to="/admin/events"><svg
@@ -67,8 +82,8 @@
               Orte</RouterLink>
           </li>
           <li v-if="pb.authStore.model.managePosts">
-            <RouterLink :class="checkActiveMenu('admin-posts')" to="/admin/posts"><svg xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <RouterLink :class="checkActiveMenu('admin-posts')" to="/admin/posts"><svg
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                 <path fill-rule="evenodd"
                   d="M4.125 3C3.089 3 2.25 3.84 2.25 4.875V18a3 3 0 003 3h15a3 3 0 01-3-3V4.875C17.25 3.839 16.41 3 15.375 3H4.125zM12 9.75a.75.75 0 000 1.5h1.5a.75.75 0 000-1.5H12zm-.75-2.25a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5H12a.75.75 0 01-.75-.75zM6 12.75a.75.75 0 000 1.5h7.5a.75.75 0 000-1.5H6zm-.75 3.75a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75zM6 6.75a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h3a.75.75 0 00.75-.75v-3A.75.75 0 009 6.75H6z"
                   clip-rule="evenodd" />
@@ -86,6 +101,19 @@
               </svg>
 
               Willkommensnachrichten</RouterLink>
+          </li>
+          <li v-if="pb.authStore.model.managePages">
+            <RouterLink :class="checkActiveMenu('admin-pages')" to="/admin/pages"><svg
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path fill-rule="evenodd"
+                  d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
+                  clip-rule="evenodd" />
+                <path
+                  d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
+              </svg>
+
+
+              Seiten</RouterLink>
           </li>
           <li v-if="pb.authStore.model.manageTeams">
             <RouterLink :class="checkActiveMenu('admin-teams')" to="/admin/teams">
@@ -150,6 +178,7 @@
 const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
 const pb = usePocketBase();
+const taskStore = useAdminEventTasksStore()
 
 function checkActiveMenu(name) {
   if (route.name === name) {
@@ -163,4 +192,27 @@ function logout() {
   pb.authStore.clear();
   return navigateTo("/admin/login");
 }
+
+function isSameDate(date1, date2) {
+  return (
+    date1.getFullYear() === date2.getFullYear() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getDate() === date2.getDate()
+  );
+}
+onMounted(async () => {
+  let payload = {};
+  if (!pb.authStore.model.manageAllEvents) {
+    payload.filter = 'team="' + pb.authStore.model.team + '"';
+  }
+
+  let events = await pb.collection("events").getFullList(payload);
+
+  events.forEach(event => {
+    if (!isSameDate(new Date(event.start), new Date(event.end))) {
+      taskStore.add(event.id, "SPANS_MULTIPLE_DAYS")
+    }
+  })
+})
+
 </script>

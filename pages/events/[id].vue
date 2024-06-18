@@ -17,7 +17,10 @@
           }).format(new Date(record.end))
         }}</span
       >
-      <h1 class="text-3xl">{{ record.name }}</h1>
+      <div class="flex flex-row justify-between space-x-2">
+        <h1 class="text-3xl">{{ record.name }}</h1>
+        <FavoriteButton :id="record.id" />
+      </div>
       <TeamNote v-if="record.team !== undefined" :team="record.team" />
       <div class="flex gap-2 py-2">
         <div class="badge badge-info gap-2 badge-outline badge-md">
@@ -65,6 +68,7 @@
 const route = useRoute();
 const eventManager = useEventManager();
 const record = ref(null);
+const favorites = useFavorites()
 
 onMounted(async () => {
   record.value = await eventManager.getById(route.params.id);

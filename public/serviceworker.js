@@ -2,16 +2,32 @@ const options = <%= JSON.stringify(options) %>
 
     importScripts(options.workboxUrl)
 
-console.log("Custom Worker! Ja!")
-
-self.addEventListener('install', () => self.skipWaiting())
-self.addEventListener('activate', () => self.clients.claim())
 
 const { registerRoute } = workbox.routing
 const { NetworkFirst, StaleWhileRevalidate, CacheFirst } = workbox.strategies
 const { CacheableResponsePlugin } = workbox.cacheableResponse
 const { ExpirationPlugin } = workbox.expiration
 const { precacheAndRoute } = workbox.precaching
+
+const CACHE = "lajucamp-offline";
+
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
+
+workbox.routing.registerRoute(
+  new RegExp('^(?!.*\\/api).*'),
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: CACHE
+  })
+);
+
+
+self.addEventListener('install', () => {self.skipWaiting()})
+self.addEventListener('activate', () => self.clients.claim())
 
 // Cache page navigations (html) with a Network First strategy
 registerRoute(
@@ -54,20 +70,16 @@ registerRoute(
     })
 )
 
+// Prevent caching of API requests
 registerRoute(
-    ({ url }) =>
-        url.pathname.startsWith('/api/collections/events') || url.pathname.startsWith('/api/collections/categories') || url.pathname.startsWith('/api/collections/posts') || url.pathname.startsWith('/api/collections/locations'),
-    new NetworkFirst({
-        cacheName: 'apiCache',
-        plugins: [
-            new CacheableResponsePlugin({
-                statuses: [0, 200],
-            }),
-        ],
-    })
-);
+    ({ url }) => url.pathname.includes('/api'),
+    new NetworkOnly()
+)
+
 
 // Precaching
 if (options.preCaching.length) {
     precacheAndRoute(options.preCaching, options.cacheOptions)
 }
+
+

@@ -23,14 +23,21 @@
     "vitest": "^1.2.2"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-vue": "^5.1.0",
+    "@pinia/nuxt": "^0.5.1",
     "@vuepic/vue-datepicker": "^7.3.0",
     "@vueup/vue-quill": "^1.2.0",
     "@vueuse/core": "^10.4.1",
+    "ckeditor5-custom-build": "file:./ckeditor5/",
     "js-cookie": "^3.0.5",
     "nuxt-swiper": "^1.2.2",
-    "pocketbase": "^0.16.0",
+    "pinia": "^2.1.7",
+    "pocketbase": "file:./pb-js-sdk/",
     "qr-scanner": "^1.4.2",
     "simple-analytics-vue": "^3.0.2",
     "unplugin-auto-import": "^0.17.5"
+  },
+  "resolutions": {
+    "string-width": "4.2.3"
   }
 }

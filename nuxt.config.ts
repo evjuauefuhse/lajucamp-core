@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@kevinmarrec/nuxt-pwa', '@nuxtjs/device', 'nuxt-vitest', 'nuxt-swiper'],
+  modules: ['@nuxtjs/tailwindcss', '@kevinmarrec/nuxt-pwa', '@nuxtjs/device', 'nuxt-vitest', 'nuxt-swiper', '@pinia/nuxt'],
   tailwindcss: {
     config: {
       plugins: [
@@ -107,7 +107,8 @@ export default defineNuxtConfig({
       disableEvents: false,
       iosLink: '',
       androidLink: '',
-      theme: 'lajucamp24'
+      theme: 'lajucamp24',
+      fallbacksongs: true
     }
   },
   pwa: {
@@ -121,7 +122,7 @@ export default defineNuxtConfig({
       purpose: 'maskable'
     },
     workbox: {
-      templatePath: '@/public/sw.js',
+      templatePath: '@/public/serviceworker.js',
       offlinePage: '/404.html',
       globPatterns: ['**/*.{js,css}'],
       offline: true,

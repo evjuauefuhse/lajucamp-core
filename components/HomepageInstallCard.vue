@@ -1,6 +1,6 @@
 <template>
-  <LinkHelper :target="target"
-    v-if="(cookie === undefined || cookie !== true) && supported && (route.query.standalone === undefined || route.query.standalone !== 'true')">
+  <LinkHelper :target=" target "
+    v-if="(cookie === undefined || cookie !== true) && supported && (route.query.standalone === undefined || route.query.standalone !== 'true' || device.userAgent.includes('lajucampapp'))">
     <div class="card card-compact bg-base-100 shadow-lg" to="/">
       <div class="card-body">
         <h2 class="card-title">App installieren <span>

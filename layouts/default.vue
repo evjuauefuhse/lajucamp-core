@@ -4,7 +4,8 @@
         <main :data-theme="theme.getCurrentTheme()" class="content px-3 bg-background relative pb-16">
             <slot />
         </main>
-        <LayoutBottomNavigation class="z-10" />
+        <LayoutBottomNavigation :class="assembleNavbarClass()" />
+        <div v-if="shouldShiftNavbar()" class="fixed bottom-0 left-0 min-h-4 h-4 w-full bg-base-100 z-10"></div>
     </LayoutThemeHelper>
 </template>
 
@@ -25,6 +26,8 @@ const pageManager = usePageManager()
 const welcomeManager = useWelcomeManager()
 const PostManager = usePostManager()
 
+const device = useDevice()
+
 if (await shouldUpdateCache(categoryStore, 'categories')) {
     await categoryManager.getList()
 }
@@ -39,5 +42,17 @@ if (await shouldUpdateCache(welcomeMessageStore, 'welcome_messages')) {
 }
 if (await shouldUpdateCache(postStore, 'posts')) {
     await PostManager.getList()
+}
+
+function shouldShiftNavbar() { 
+    return device.isIos && device.userAgent.includes("hasHomeButton=false");
+}
+
+function assembleNavbarClass() {
+    if (shouldShiftNavbar()) {
+        return "z-10 mb-4"
+    } else {
+        return "z-10"
+    }
 }
 </script>
