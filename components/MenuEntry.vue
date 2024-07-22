@@ -2,10 +2,8 @@
     <div @click="sendToPage" v-if="!props.to.startsWith('http')">
         <li>
             <a class="px-1">
-                <div>
-                    <slot />
-                    {{ props.name }}
-                </div>
+                <slot />
+                {{ props.name }}
             </a>
         </li>
     </div>
