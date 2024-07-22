@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col space-y-3">
-        <HomePageOfflineCard v-if="!online"/>
+        <HomePageOfflineCard v-if="!online" />
         <HomepageWelcomeCardBundle />
         <HomepageEventListCard v-if="!config.public.disableEvents" />
         <HomepageRestrictedCard v-else />
@@ -24,28 +24,28 @@ if (route.query.standalone === 'true') {
 const settings = useUserSettings()
 
 function checkAge(date) {
-  // Get the current date and time
-  const now = new Date();
-  
-  // Get the timestamp for two hours ago
-  const twoHoursAgo = new Date(now.getTime() - (2 * 60 * 60 * 1000));
-  
-  // Compare the provided date with the timestamp for two hours ago
-  return date < twoHoursAgo;
+    // Get the current date and time
+    const now = new Date();
+
+    // Get the timestamp for two hours ago
+    const twoHoursAgo = new Date(now.getTime() - (2 * 60 * 60 * 1000));
+
+    // Compare the provided date with the timestamp for two hours ago
+    return date < twoHoursAgo;
 }
 
-if(online.value) {
-    if(settings.get("lastCacheUpdate") === undefined) {
+if (online.value) {
+    if (settings.get("lastCacheUpdate") === undefined) {
         await updateAllCaches()
         settings.set("lastCacheUpdate", (new Date()))
         console.log("Updating all caches because never.")
     } else {
-        if(checkAge(settings.get("lastCacheUpdate"))) {
+        if (checkAge(settings.get("lastCacheUpdate"))) {
             await updateAllCaches()
             console.log("Updating all caches because old.")
         }
     }
-    await songManager.getList()
+    // await songManager.getList()
 
 }
 </script>
