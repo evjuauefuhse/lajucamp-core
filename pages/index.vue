@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col space-y-3 pb-3">
+    <div class="flex flex-col space-y-3">
         <HomePageOfflineCard v-if="!online"/>
         <HomepageWelcomeCardBundle />
         <HomepageEventListCard v-if="!config.public.disableEvents" />
