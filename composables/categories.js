@@ -1,8 +1,9 @@
 import { useLocalStorage } from "@vueuse/core"
 
 export const useCategoryManager = () => {
-    const pb = usePocketBase()
-    const storage = useLocalStorage("categoryStore", { updated: null, items: [] })
+    const instances = useInstanceManager()
+    const pb = instances.getPocketBase()
+    const storage = useLocalStorage("categoryStore_" + instances.instance().id, { updated: null, items: [] })
 
     async function getInternalCategoryList() {
         const response = await pb.collection('categories').getFullList();

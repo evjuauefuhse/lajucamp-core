@@ -1,8 +1,9 @@
 import { useLocalStorage } from "@vueuse/core"
 
 export const useLocationManager = () => {
-    const pb = usePocketBase()
-    const storage = useLocalStorage("locationStore", { updated: null, items: [] })
+    const instances = useInstanceManager()
+    const pb = instances.getPocketBase()
+    const storage = useLocalStorage("locationStore_" + instances.instance().id, { updated: null, items: [] })
 
     async function getInternalLocationList() {
         const response = await pb.collection('locations').getFullList();

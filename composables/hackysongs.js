@@ -1,26 +1,27 @@
 import { useLocalStorage } from "@vueuse/core"
 
 export const useSongManager = () => {
-    const pb = usePocketBase()
-    const storage = useLocalStorage("hackSongsStore", { updated: null, items: [] })
+    const instances = useInstanceManager()
+    const pb = instances.getPocketBase()
+    const storage = useLocalStorage("hackSongsStore_" + instances.instance().id, { updated: null, items: [] })
 
     function isTimeInRange() {
         const currentTime = new Date();
         const currentHours = currentTime.getHours();
         const currentMinutes = currentTime.getMinutes();
-      
+
         // Check if the current time is within the range of 12:00 to 15:45
         if ((currentHours > 12 && currentHours < 15) ||
             (currentHours === 12 && currentMinutes >= 0) ||
             (currentHours === 15 && currentMinutes <= 45)) {
-                console.log("It's update time! Updating.")
-          return true;
+            console.log("It's update time! Updating.")
+            return true;
         } else {
             console.log("Don't update - network could be busy. Damn.")
-          return false;
+            return false;
         }
-      }
-      
+    }
+
 
     async function getInternalSongList() {
         const response = await pb.collection('songs_hackhack').getFullList({
@@ -38,9 +39,9 @@ export const useSongManager = () => {
 
     async function getSongList() {
         let shouldUpdate = false
-        if (isTimeInRange()) {
-            shouldUpdate = true
-        }
+        //if (isTimeInRange()) {
+        //    shouldUpdate = true
+        //}
         if (shouldUpdate) {
             return await update()
         } else {

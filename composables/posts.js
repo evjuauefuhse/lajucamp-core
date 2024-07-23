@@ -1,9 +1,10 @@
 import { useLocalStorage } from "@vueuse/core"
 
 export const usePostManager = () => {
-    const pb = usePocketBase()
+    const instances = useInstanceManager()
+    const pb = instances.getPocketBase()
 
-    const storage = useLocalStorage("postStore", { updated: null, items: [] })
+    const storage = useLocalStorage("postStore_" + instances.instance().id, { updated: null, items: [] })
 
 
     async function getInternalPostList() {

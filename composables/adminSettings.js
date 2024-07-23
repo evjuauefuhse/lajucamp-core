@@ -1,5 +1,6 @@
 export const useSettingsManager = () => {
-    const pb = usePocketBase()
+    const instances = useInstanceManager()
+    const pb = instances.getPocketBase()
     const currentUser = pb.authStore.model.id
 
     const SettingsManager = {
