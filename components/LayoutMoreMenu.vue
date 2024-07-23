@@ -4,6 +4,13 @@
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
         <h3 class="text-xl font-bold mb-3">Mehr</h3>
+        <div v-show="config.public.hds" class="rounded-lg border-solid border-2 border-neutral p-3">
+            <figure class="flex flex-row justify-center w-full items-center space-x-3 justify-start">
+                <img src="~assets/hds.png" class="max-h-24 max-w-32" />
+                <p>Unterstützt durch die Heinrich Dammann Stiftung.</p>
+
+            </figure>
+        </div>
         <ul class="menu menu-lg p-0">
             <!--<MenuEntry @click="closeMoreDialog" v-if="checkDevelAccess()" name="Entwicklerinformationen" to="/test">
                 <path stroke-linecap="round" stroke-linejoin="round"

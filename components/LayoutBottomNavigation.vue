@@ -1,4 +1,7 @@
 <template>
+    <dialog id="more_dialog" class="modal modal-bottom">
+        <LayoutMoreMenu />
+    </dialog>
     <div class="btm-nav">
         <router-link :class="(routes.home.includes($route.name)) ? 'active' : 'not_active'" to="/">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -10,7 +13,8 @@
             <span class="btm-nav-label">Home</span>
         </router-link>
 
-        <router-link v-if="!config.public.disableEvents" :class="(routes.events.includes($route.name)) ? 'active' : 'not_active'" to="/events">
+        <router-link v-if="!config.public.disableEvents"
+            :class="(routes.events.includes($route.name)) ? 'active' : 'not_active'" to="/events">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -44,7 +48,7 @@
 
             <span class="btm-nav-label">News</span>
         </router-link>
-        <router-link :class="(routes.more.includes($route.name)) ? 'active' : 'not_active'" to="/misc">
+        <button :class="(routes.more.includes($route.name)) ? 'active' : 'not_active'" @click="openMoreDialog()">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -52,11 +56,19 @@
             </svg>
 
             <span class="btm-nav-label">Mehr</span>
-        </router-link>
+        </button>
+
     </div>
 </template>
 
 <script setup>
+function openMoreDialog() {
+    more_dialog.showModal()
+}
+
+function closeMoreDialog() {
+    more_dialog.close()
+}
 const routes = {
     home: [
         'index'
@@ -116,4 +128,6 @@ function checkMusicAccess() {
     const data = hackyCookieWorkaround()
     return data.some(obj => obj.allowMusic === true)
 }
+
+
 </script>
