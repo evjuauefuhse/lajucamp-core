@@ -35,7 +35,8 @@
     "pocketbase": "file:./pb-js-sdk/",
     "qr-scanner": "^1.4.2",
     "simple-analytics-vue": "^3.0.2",
-    "unplugin-auto-import": "^0.17.5"
+    "unplugin-auto-import": "^0.17.5",
+    "uuid": "^10.0.0"
   },
   "resolutions": {
     "string-width": "4.2.3"
