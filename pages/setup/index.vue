@@ -330,7 +330,8 @@ async function nextStep() {
         step.value++
     } else if (step.value === 1) {
         // Check if entry is a valid url
-        const regex = /^(https:\/\/)[^\s/$.?#].[^\s]*$/i;
+        // use https in prod!!! TODO
+        const regex = /^(http:\/\/)[^\s/$.?#].[^\s]*$/i;
         if (!regex.test(pbUrl.value)) {
             errormessage.value = "Die eingegebene URL ist ungültig."
         } else {

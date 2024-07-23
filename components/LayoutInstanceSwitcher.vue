@@ -37,7 +37,7 @@
             </div>
             <div :class="(instanceDropdown ? 'visible' : 'hidden') + ' rounded-b-lg bg-base-100'">
                 <div v-for="instance in instances.getList()" v-show="instance.id !== instances.instance().id"
-                    class="flex flex-row">
+                    @click="switchInstance(instance.id)" class="flex flex-row">
                     <div class="flex flex-col justify-center items-center">
                         <div class="avatar">
                             <div class="w-8 h-8 rounded-full bg-base-300 text-neutral m-3">
@@ -96,5 +96,10 @@ const instances = useInstanceManager()
 
 function closeInstanceSwitcher() {
     emit("close")
+}
+
+function switchInstance(id) {
+    instances.setInstance(id)
+    window.location.reload(false);
 }
 </script>

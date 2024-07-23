@@ -58,6 +58,15 @@ const data = [
                 url: "https://kjdburgdorf.northeurope.cloudapp.azure.com"
             }
         ]
+    },
+    {
+        name: "Sprengel Lüneburg",
+        content: [
+            {
+                name: "Kirchenkreis Test",
+                url: "http://localhost:8090"
+            }
+        ]
     }
 ]
 
