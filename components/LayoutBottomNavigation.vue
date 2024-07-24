@@ -112,7 +112,8 @@ const routes = {
 
 const config = useRuntimeConfig()
 
-const cookie = useCookie("keys", { expires: new Date('9999-12-31') })
+const instances = useInstanceManager()
+const cookie = useCookie("keys_" + instances.instance().id, { expires: new Date('9999-12-31') })
 
 function hackyCookieWorkaround() {
     const currentType = typeof cookie.value
