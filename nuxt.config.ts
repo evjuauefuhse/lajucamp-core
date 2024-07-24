@@ -99,7 +99,6 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      pocketbaseUrl: '',
       saDomain: '',
       title: '',
       short_title: '',
@@ -111,7 +110,8 @@ export default defineNuxtConfig({
       theme: 'lajucamp24',
       fallbacksongs: false,
       privacy: '',
-      imprint: ''
+      imprint: '',
+      instancelist: ''
     }
   },
   pwa: {
