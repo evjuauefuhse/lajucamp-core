@@ -11,11 +11,13 @@ export const useInstanceManager = () => {
             const pb = new PocketBase(url)
             const app = (await pb.collection('metadata').getFirstListItem('key="app"')).value
             const instance_id = (await pb.collection('metadata').getFirstListItem('key="instance"')).value.id
+            const eventmode = (await pb.collection('metadata').getFirstListItem('key="events"')).value.mode
             storage.value.items.push({
                 name: app.name,
                 team: app.team,
                 id: instance_id,
-                url: url
+                url: url,
+                eventmode: eventmode
             })
             storage.value.updated = new Date()
             return instance_id

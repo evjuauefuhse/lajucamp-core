@@ -162,6 +162,12 @@
                                                 </div>
                                                 <input type="text" class="input input-lg input-bordered w-full"
                                                     v-model="teamName" @change="errormessage = ''" />
+                                                <label class="label cursor-pointer">
+                                                    <span class="label-text">Veranstaltungsmodus</span>
+                                                    <input v-model="eventmode" type="checkbox" class="toggle"
+                                                        checked="checked" />
+                                                </label>
+                                                {{ eventmode }}
                                                 <div role="alert" class="alert alert-error mt-5"
                                                     v-show="errormessage !== ''">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -170,6 +176,7 @@
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
                                                     </svg>
+
 
                                                     <span>{{ errormessage }}</span>
                                                 </div>
@@ -316,6 +323,7 @@ let authData = null
 // Step 3
 const appName = ref()
 const teamName = ref()
+const eventmode = ref(false)
 
 // Step 4
 const username = ref()
@@ -400,7 +408,11 @@ async function nextStep() {
         await pb.collection('metadata').create({ "key": "app", "value": { "name": appName.value, "team": teamName.value } });
         await pb.collection('user_settings').create({ "user": user.id, "setting": "oobe_password_set", "content": { "success": true } })
         await pb.collection('metadata').create({ "key": "instance", "value": { "id": uuidv4() } });
-
+        if (eventmode.value) {
+            await pb.collection('metadata').create({ "key": "events", "value": { "mode": "event" } });
+        } else {
+            await pb.collection('metadata').create({ "key": "events", "value": { "mode": "calendar" } });
+        }
         submitting.value = false
         step.value++
     } else if (step.value === 5) {

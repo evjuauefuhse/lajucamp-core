@@ -2,7 +2,7 @@
     <div class="flex flex-col space-y-3">
         <HomePageOfflineCard v-if="!online" />
         <HomepageWelcomeCardBundle />
-        <HomepageEventListCard v-if="!config.public.disableEvents" />
+        <HomepageEventListCard v-if="instance.instance().eventmode === 'event'" />
         <HomepageRestrictedCard v-else />
         <SingleNewsCard />
         <HomepageInstallCard />
@@ -13,7 +13,7 @@
 import { useOnline } from "@vueuse/core"
 
 const route = useRoute()
-const config = useRuntimeConfig()
+const instance = useInstanceManager()
 const cookie = useCookie("installed", { expires: new Date('9999-12-31') })
 const online = useOnline()
 const songManager = useSongManager()
