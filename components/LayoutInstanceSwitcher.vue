@@ -98,8 +98,9 @@ function closeInstanceSwitcher() {
     emit("close")
 }
 
-function switchInstance(id) {
+async function switchInstance(id) {
     instances.setInstance(id)
+    await navigateTo("/")
     window.location.reload(false);
 }
 </script>
