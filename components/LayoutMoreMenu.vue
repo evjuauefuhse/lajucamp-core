@@ -80,16 +80,16 @@ function checkPictureAccess() {
 
 function checkAccessKey(record) {
     if (!record.needsFeatureKey) {
-        console.log("Allow because no featureKey set")
+        console.debug("Allow because no featureKey set")
         return true
     }
     else {
         if (cookie === undefined || cookie.value === undefined) {
-            console.log("Deny because no cookie set")
+            console.debug("Deny because no cookie set")
             return false
         }
         else {
-            console.log("Check if cookie contains featureKey")
+            console.debug("Check if cookie contains featureKey")
             return cookie.value.some(obj => obj.id === record.featureKey)
         }
     }

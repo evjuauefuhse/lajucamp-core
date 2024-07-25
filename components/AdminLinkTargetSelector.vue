@@ -31,9 +31,12 @@
                 </div>
                 <select v-model="selectedEvent" class="select select-bordered w-full" @change="setModel">
                     <option selected disabled>Bitte auswählen</option>
-                    <option :value="event.id" v-for="event in events">{{ event.name }} | {{ new Intl.DateTimeFormat("de",
-                        { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "numeric" }).format(new
-                            Date(event.start)) }}</option>
+                    <option :value="event.id" v-for="event in events">{{ event.name }} | {{ new
+                        Intl.DateTimeFormat("de",
+                            {
+                                weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "numeric"
+                            }).format(new
+                                Date(event.start)) }}</option>
                 </select>
             </div>
             <div v-show="selected === 2">
@@ -43,7 +46,9 @@
                 <select v-model="selectedPost" class="select select-bordered w-full" @change="setModel">
                     <option selected disabled>Bitte auswählen</option>
                     <option :value="post.id" v-for="post in posts">{{ post.title }} | {{ new Intl.DateTimeFormat("de",
-                        { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "numeric" }).format(new
+                        {
+                            weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "numeric"
+                        }).format(new
                             Date(post.created)) }}</option>
                 </select>
             </div>
@@ -147,8 +152,8 @@ const url = ref(null)
 
 
 function debug() {
-    console.log(selected.value)
-    console.log(selectedPost.value)
+    console.debug(selected.value)
+    console.debug(selectedPost.value)
 }
 
 function setModel() {

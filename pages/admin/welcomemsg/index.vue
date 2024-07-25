@@ -24,8 +24,8 @@
       <h3 v-if="action === 1" class="font-bold text-lg">Willkommensnachricht bearbeiten</h3>
       <div class="py-4">
         <div v-if="error" role="alert" class="alert alert-error mb-3">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            class="w-6 h-6">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round"
               d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
           </svg>
@@ -110,8 +110,8 @@
       <h3 class="font-bold text-lg">Diese Willkommensnachricht wirklich löschen?</h3>
       <div class="py-4">
         <div v-if="error" role="alert" class="alert alert-error mb-3">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            class="w-6 h-6">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round"
               d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
           </svg>
@@ -288,7 +288,7 @@ async function save() {
 
 function edit(welcome_message) {
   is_open.value = true
-  console.log(welcome_message)
+  console.debug(welcome_message)
   selectedId = welcome_message.id;
   title.value = welcome_message.title;
   message.value = welcome_message.text;

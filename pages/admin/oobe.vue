@@ -14,10 +14,11 @@
                                     </span><br /><span class="inline-grid"><span
                                             class="pointer-events-none col-start-1 row-start-1 bg-[linear-gradient(90deg,theme(colors.error)_0%,theme(colors.secondary)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)] bg-clip-text blur-xl [transform:translate3d(0,0,0)] [-webkit-text-fill-color:transparent] before:content-[attr(data-text)] [@supports(color:oklch(0_0_0))]:bg-[linear-gradient(90deg,oklch(var(--s))_4%,color-mix(in_oklch,oklch(var(--s)),oklch(var(--er)))_22%,oklch(var(--p))_45%,color-mix(in_oklch,oklch(var(--p)),oklch(var(--a)))_67%,oklch(var(--a))_100.2%)]"
                                             aria-hidden="true" data-text="KJD Burgdorf"></span><span
-                                            class="pb-3 relative col-start-1 row-start-1 bg-[linear-gradient(90deg,theme(colors.error)_0%,theme(colors.secondary)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)] bg-clip-text [-webkit-text-fill-color:transparent] [&amp;::selection]:bg-blue-700/20 [@supports(color:oklch(0_0_0))]:bg-[linear-gradient(90deg,oklch(var(--s))_4%,color-mix(in_oklch,oklch(var(--s)),oklch(var(--er)))_22%,oklch(var(--p))_45%,color-mix(in_oklch,oklch(var(--p)),oklch(var(--a)))_67%,oklch(var(--a))_100.2%)]">KJD Burgdorf</span></span><span
-                                        class="contrast-150">.</span>
+                                            class="pb-3 relative col-start-1 row-start-1 bg-[linear-gradient(90deg,theme(colors.error)_0%,theme(colors.secondary)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)] bg-clip-text [-webkit-text-fill-color:transparent] [&amp;::selection]:bg-blue-700/20 [@supports(color:oklch(0_0_0))]:bg-[linear-gradient(90deg,oklch(var(--s))_4%,color-mix(in_oklch,oklch(var(--s)),oklch(var(--er)))_22%,oklch(var(--p))_45%,color-mix(in_oklch,oklch(var(--p)),oklch(var(--a)))_67%,oklch(var(--a))_100.2%)]">KJD
+                                            Burgdorf</span></span><span class="contrast-150">.</span>
                                 </h1>
-                                <p class="py-4 font-light md:text-lg xl:text-2xl">Lass uns deinen Account einrichten.</p>
+                                <p class="py-4 font-light md:text-lg xl:text-2xl">Lass uns deinen Account einrichten.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -50,8 +51,8 @@
                                     <div class="label">
                                         <span class="label-text">Neues Passwort</span>
                                     </div>
-                                    <input type="password" class="input input-lg input-bordered w-full" v-model="password"
-                                        @change="errormessage = ''" />
+                                    <input type="password" class="input input-lg input-bordered w-full"
+                                        v-model="password" @change="errormessage = ''" />
                                     <div class="label">
                                         <span class="label-text">Neues Passwort wiederholen</span>
                                     </div>
@@ -84,7 +85,8 @@
                                         Du hast eine besondere Aufgabe.
                                     </span>
                                 </h1>
-                                <p class="py-4 font-light md:text-lg xl:text-2xl">Dafür bist du mit diesen Berechtigungen
+                                <p class="py-4 font-light md:text-lg xl:text-2xl">Dafür bist du mit diesen
+                                    Berechtigungen
                                     ausgestattet:
                                 </p>
                                 <div class="flex flex-col space-y-3 pt-3">
@@ -115,7 +117,8 @@
                                         zu haben.
                                     </span>
                                 </h1>
-                                <p class="py-4 font-light md:text-lg xl:text-2xl">Hier sind einge Tipps für den Einstieg.
+                                <p class="py-4 font-light md:text-lg xl:text-2xl">Hier sind einge Tipps für den
+                                    Einstieg.
                                 </p>
                             </div>
                         </div>
@@ -208,9 +211,11 @@
                                         Verwende einen Computer<br />oder ein Tablet.
                                     </span>
                                 </h1>
-                                <p class="py-4 font-light md:text-lg xl:text-2xl">Die Seite ist für die Verwendung<br />auf
+                                <p class="py-4 font-light md:text-lg xl:text-2xl">Die Seite ist für die
+                                    Verwendung<br />auf
                                     einem
-                                    Computer oder Tablet optimiert.<br />Auf einem Smartphone kann es zu Problemen kommen.
+                                    Computer oder Tablet optimiert.<br />Auf einem Smartphone kann es zu Problemen
+                                    kommen.
                                 </p>
                             </div>
                         </div>
@@ -242,7 +247,8 @@
             <div class="p-5">
                 <div v-if="step !== 7"
                     class="inline-flex w-full flex-col items-stretch justify-right gap-2 px-4 md:flex-row xl:justify-end xl:px-0">
-                    <div v-if="!submitting" @click="nextStep()" class="btn btn-neutral md:btn-lg md:btn-wide group px-12">
+                    <div v-if="!submitting" @click="nextStep()"
+                        class="btn btn-neutral md:btn-lg md:btn-wide group px-12">
                         <span>Weiter</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor"
@@ -346,7 +352,7 @@ async function nextStep() {
 
         // Set password
         const oldPassword = await settings.getValue("oobe_init_password")
-        console.log(oldPassword)
+        console.debug(oldPassword)
         const response = await pb.collection("users").update(pb.authStore.model.id, {
             password: password.value,
             passwordConfirm: passwordRepeat.value,

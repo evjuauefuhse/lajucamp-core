@@ -26,7 +26,7 @@ export const useSettingsManager = () => {
             } catch (e) {
                 exists = false
             }
-            console.log(exists)
+            console.debug(exists)
             if (exists) {
                 res = await pb.collection('user_settings').update(response.id, { content: value })
             } else {
@@ -43,7 +43,7 @@ export const useSettingsManager = () => {
             } catch (e) {
                 exists = false
             }
-            console.log(exists)
+            console.debug(exists)
             if (exists) {
                 res = await pb.collection('user_settings').update(response.id, { content: value })
             } else {

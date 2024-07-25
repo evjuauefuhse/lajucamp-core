@@ -38,11 +38,11 @@ if (online.value) {
     if (settings.get("lastCacheUpdate") === undefined) {
         await updateAllCaches()
         settings.set("lastCacheUpdate", (new Date()))
-        console.log("Updating all caches because never.")
+        console.debug("Updating all caches because never.")
     } else {
         if (checkAge(settings.get("lastCacheUpdate"))) {
             await updateAllCaches()
-            console.log("Updating all caches because old.")
+            console.debug("Updating all caches because old.")
         }
     }
     // await songManager.getList()

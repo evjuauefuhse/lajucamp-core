@@ -14,10 +14,10 @@ export const useSongManager = () => {
         if ((currentHours > 12 && currentHours < 15) ||
             (currentHours === 12 && currentMinutes >= 0) ||
             (currentHours === 15 && currentMinutes <= 45)) {
-            console.log("It's update time! Updating.")
+            console.debug("It's update time! Updating.")
             return true;
         } else {
-            console.log("Don't update - network could be busy. Damn.")
+            console.debug("Don't update - network could be busy. Damn.")
             return false;
         }
     }

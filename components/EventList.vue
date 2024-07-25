@@ -15,7 +15,7 @@ let records = ref(null)
 
 
 onMounted(async () => {
-    console.log(props)
+    console.debug(props)
     if (props.homepage !== "") {
         if (props.limit === undefined) {
             records.value = await eventManager.getList()

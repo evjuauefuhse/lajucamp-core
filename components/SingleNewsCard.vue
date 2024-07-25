@@ -4,7 +4,7 @@
             <div class="card card-compact bg-base-100 shadow-xl">
                 <div class="card-body">
                     <span class="text-sm font-light">Beitrag veröffentlicht {{ getRelativeTime(new Date(post.created))
-                    }}</span>
+                        }}</span>
                     <h2 class="card-title">
                         {{ post.title }}
                         <span>
@@ -57,13 +57,13 @@ const post = ref(null)
 const empty = ref(false)
 onMounted(async () => {
     const resultList = await postManager.getList(1)
-    console.log(resultList)
+    console.debug(resultList)
     if (resultList.length > 0) {
         post.value = resultList[0]
     } else {
         empty.value = true
     }
-    console.log(post.value)
+    console.debug(post.value)
 })
 
 </script>

@@ -61,6 +61,6 @@ const slides = ref(Array.from({ length: 10 }, () => {
 }))
 onMounted(async () => {
     events.value = await eventManager.getDayList()
-    console.log(events.value)
+    console.debug(events.value)
 });
 </script>

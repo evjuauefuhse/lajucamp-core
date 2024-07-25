@@ -5,7 +5,7 @@ export const shouldUpdateCache = async (storage, remote) => {
     const online = useOnline()
     const instances = useInstanceManager()
     const pb = instances.getPocketBase()
-    console.log(storage.value)
+    console.debug(storage.value)
 
     if (online.value === false) {
         console.debug("User is offline, not updating cache")
@@ -56,7 +56,7 @@ export const shouldUpdateCache = async (storage, remote) => {
 
         } catch (e) {
             if (e instanceof TypeError) {
-                console.log("No data in Backend, keeping local cache")
+                console.debug("No data in Backend, keeping local cache")
             }
         }
 

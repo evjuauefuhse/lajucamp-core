@@ -98,7 +98,7 @@ async function confirm() {
     let temp = cookie.value
     temp.push(record)
     cookie.value = JSON.stringify(temp, null, 2)
-    console.log(cookie.value)
+    console.debug(cookie.value)
 }
 
 function validateJsonString(jsonString) {

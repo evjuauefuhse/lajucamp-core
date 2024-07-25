@@ -13,7 +13,7 @@ export const usePostManager = () => {
         });
         response.forEach((item) => {
             // Do the request once so that we have the images cached
-            console.log("Fetching")
+            console.debug("Fetching")
             fetch(pb.files.getUrl(item, item.image))
         })
         const data = { updated: new Date(), items: response }

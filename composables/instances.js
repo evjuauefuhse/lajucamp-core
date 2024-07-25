@@ -22,10 +22,10 @@ export const useInstanceManager = () => {
         },
         instance: () => { return instance.value.selected },
         setInstance: (id) => {
-            console.log(storage.value.items)
+            console.debug(storage.value.items)
             instance.value.selected = storage.value.items.find(item => item.id === id) || null;
             (new PocketBase(instance.value.selected.url)).authStore.clear()
-            console.log(instance.value)
+            console.debug(instance.value)
         },
         getList: () => {
             return storage.value.items
@@ -39,14 +39,14 @@ export const useInstanceManager = () => {
             }
         },
         shouldDoInitialSetup: () => {
-            console.log(instance.value.selected)
+            console.debug(instance.value.selected)
             if (instance.value.selected === null || storage.value.items.length === 0) {
                 return true
             } return false
         },
         isReady: () => {
             if (instance.value !== undefined && storage.value !== undefined) {
-                console.log("instance", instance.value)
+                console.debug("instance", instance.value)
                 return true
             }
             return false
