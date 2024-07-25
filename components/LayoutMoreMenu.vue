@@ -23,7 +23,7 @@
             </MenuEntry>-->
             <div v-if="records.length !== 0">
                 <div v-for="record in records" :key="record.id">
-                    <MenuEntry @click="closeMoreDialog" v-if="checkAccessKey(record)" :name="record.name"
+                    <MenuEntry @close="close()" v-if="checkAccessKey(record)" :name="record.name"
                         :to="(record.redirectUrl !== '') ? record.redirectUrl : '/misc/page-' + record.id">
                         <div v-html="record.icon"></div>
                     </MenuEntry>
@@ -41,7 +41,11 @@ const config = useRuntimeConfig()
 
 const instances = useInstanceManager()
 const cookie = useCookie("keys_" + instances.instance().id, { expires: new Date('9999-12-31') })
+const emit = defineEmits(["close"])
 
+function close() {
+    emit("close")
+}
 function hackyCookieWorkaround() {
     const currentType = typeof cookie.value
     if (currentType === "string") {

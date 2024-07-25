@@ -23,6 +23,6 @@ const emit = defineEmits(["close"])
 
 async function sendToPage() {
     emit("close")
-    await navigateTo(props.ot)
+    await navigateTo(props.to)
 }
 </script>
