@@ -290,7 +290,7 @@ definePageMeta({
 
 const step = ref(0)
 const settings = useSettingsManager();
-const pb = usePocketBase()
+const pb = useInstanceManager().getPocketBase()
 const errormessage = ref("")
 const submitting = ref(false)
 const route = useRoute()

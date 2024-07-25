@@ -13,7 +13,7 @@
 
 <script setup>
 
-const pb = usePocketBase()
+const pb = useInstanceManager().getPocketBase()
 const postManager = usePostManager()
 const props = defineProps(["maxPosts"])
 let posts = ref(null)

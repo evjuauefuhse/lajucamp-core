@@ -228,7 +228,7 @@ definePageMeta({
     layout: "admin",
 });
 
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 const settings = useSettingsManager()
 const data = ref(null);
 const submitting = ref(false);

@@ -26,7 +26,7 @@
 
 <script setup>
 const query = ref("")
-const pb = usePocketBase()
+const pb = useInstanceManager().getPocketBase()
 const events = ref(null)
 const categories = ref(null)
 const songs = ref(null)

@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 const teams = useTeamManager();
 const user = pb.authStore.model;
 </script>

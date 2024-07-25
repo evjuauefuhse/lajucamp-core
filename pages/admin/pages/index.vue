@@ -260,7 +260,7 @@ const order = ref(50);
 const key = ref(-1);
 const icon = ref(null);
 
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 
 const keys = await pb.collection("keys").getFullList({
   sort: "name",

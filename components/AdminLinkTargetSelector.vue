@@ -84,7 +84,7 @@
 </template>
 
 <script setup>
-const pb = usePocketBase()
+const pb = useInstanceManager().getPocketBase()
 const props = defineProps(['modelValue'])
 const emits = defineEmits(['update:modelValue'])
 

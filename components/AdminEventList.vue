@@ -149,5 +149,5 @@
 </template>
 <script setup>
 const props = defineProps(["data", "actions"]);
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 </script>

@@ -177,7 +177,7 @@
 <script setup>
 const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 const taskStore = useAdminEventTasksStore()
 
 function checkActiveMenu(name) {

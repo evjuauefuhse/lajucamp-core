@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-const pb = usePocketBase()
+const pb = useInstanceManager().getPocketBase()
 const songManager = useSongManager()
 const data = ref(null)
 

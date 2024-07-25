@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 
 const locations = ref(null);
 

@@ -135,7 +135,7 @@ const newLayout = ref(true)
 
 const router = useRouter();
 const route = useRoute();
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 const wrong = ref(false);
 const authData = ref();
 const username = ref("");

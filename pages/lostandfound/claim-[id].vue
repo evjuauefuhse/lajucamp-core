@@ -101,7 +101,7 @@ const zipcode = ref()
 const city = ref()
 const team = ref()
 
-const pb = usePocketBase()
+const pb = useInstanceManager().getPocketBase()
 
 const error = ref(false)
 onMounted(async () => {

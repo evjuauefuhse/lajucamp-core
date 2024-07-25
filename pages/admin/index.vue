@@ -55,7 +55,7 @@ definePageMeta({
   layout: "admin",
 });
 
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 const eventManager = useEventManager();
 const categoryManager = useCategoryManager();
 const postManager = usePostManager();

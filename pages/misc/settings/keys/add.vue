@@ -64,7 +64,7 @@
 <script setup>
 const step = ref(0)
 const key = ref("")
-const pb = usePocketBase()
+const pb = useInstanceManager().getPocketBase()
 const showErrorMessage = ref(false)
 let record = null
 const qr = ref(true)

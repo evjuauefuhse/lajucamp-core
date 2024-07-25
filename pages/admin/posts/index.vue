@@ -97,7 +97,7 @@ definePageMeta({
   layout: "admin",
 });
 
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 const data = ref(null);
 const action = ref(-1);
 let formData = null;

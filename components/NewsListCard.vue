@@ -16,7 +16,7 @@
 
 <script setup>
 const props = defineProps(['post'])
-const pb = usePocketBase()
+const pb = useInstanceManager().getPocketBase()
 
 const units = {
     year: 24 * 60 * 60 * 1000 * 365,

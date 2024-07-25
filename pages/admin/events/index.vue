@@ -247,7 +247,7 @@ definePageMeta({
   middleware: "auth",
   layout: "admin",
 });
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 const data = ref(null);
 const taskStore = useAdminEventTasksStore();
 await getAllEvents();

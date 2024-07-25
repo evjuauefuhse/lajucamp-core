@@ -117,7 +117,7 @@ definePageMeta({
     layout: "admin",
 });
 
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 
 const resetMailSent = ref(false)
 const changeMailSent = ref(false)

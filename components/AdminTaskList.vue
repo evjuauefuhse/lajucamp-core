@@ -44,5 +44,5 @@
 </template>
 <script setup>
 const props = defineProps(["data"]);
-const pb = usePocketBase()
+const pb = useInstanceManager().getPocketBase()
 </script>
