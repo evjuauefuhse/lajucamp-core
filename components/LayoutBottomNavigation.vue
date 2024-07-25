@@ -1,6 +1,6 @@
 <template>
     <dialog id="more_dialog" class="modal modal-bottom">
-        <LayoutMoreMenu @close="closeMoreDialog()" />
+        <LayoutMoreMenu v-drag="onDrag" @close="closeMoreDialog()" />
     </dialog>
     <div class="btm-nav">
         <router-link :class="(routes.home.includes($route.name)) ? 'active' : 'not_active'" to="/">
@@ -62,6 +62,12 @@
 </template>
 
 <script setup>
+function onDrag(state) {
+    if (state.dragging === true && state.down === true && state.distance > 50) {
+        closeMoreDialog()
+    }
+}
+
 function openMoreDialog() {
     more_dialog.showModal()
 }

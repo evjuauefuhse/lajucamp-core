@@ -1,6 +1,6 @@
 <template>
     <dialog id="instance_switcher" class="modal modal-top">
-        <div class="modal-box bg-base-200">
+        <div v-drag="onDrag" class="modal-box bg-base-200">
             <form method="dialog">
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
@@ -74,6 +74,12 @@ function openSwitcher() {
 
 function closeInstanceSwitcher() {
     instance_switcher.close()
+}
+
+function onDrag(state) {
+    if (state.dragging === true && (state.up === true || state.down === true) && state.distance > 50) {
+        closeInstanceSwitcher()
+    }
 }
 
 </script>
