@@ -24,6 +24,7 @@ export const useInstanceManager = () => {
         setInstance: (id) => {
             console.log(storage.value.items)
             instance.value.selected = storage.value.items.find(item => item.id === id) || null;
+            (new PocketBase(instance.value.selected.url)).authStore.clear()
             console.log(instance.value)
         },
         getList: () => {
