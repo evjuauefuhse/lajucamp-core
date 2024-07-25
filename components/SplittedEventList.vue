@@ -119,8 +119,9 @@
     </div>
     <div v-show="!loading">
         <div v-if="records != null">
-            <div class="card card-compact h-full" v-if="records.length > 0">
-                <Swiper @swiper="initSwiper" class="w-full" @slideChange="onSwipe" :autoplay="{ delay: 4 }">
+            <div class="card card-compact z-0" v-if="records.length > 0">
+                <Swiper @swiper="initSwiper" class="w-full z-0" @slideChange="onSwipe"
+                    :autoplay="{ delay: 4 }">
                     <SwiperSlide v-for="(item, index) in records" :key="index" :item="item" class="h-full">
                         <div class="collapse collapse-plus">
                             <input type="checkbox" />
