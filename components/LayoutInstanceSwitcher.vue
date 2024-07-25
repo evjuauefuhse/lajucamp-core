@@ -49,7 +49,8 @@
                         <div>{{ instance.name }}</div>
                     </div>
                 </div>
-                <RouterLink to="/misc/settings/instances" class="flex flex-row mt-3">
+                <RouterLink @click="closeInstanceSwitcher()" to="/misc/settings/instances/add"
+                    class="flex flex-row mt-3">
                     <div class="flex flex-col justify-center items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6 mt-2 mb-5 mx-4">
