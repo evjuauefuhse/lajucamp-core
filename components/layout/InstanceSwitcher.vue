@@ -92,6 +92,7 @@
 const instanceDropdown = ref(false)
 const emit = defineEmits("close")
 const config = useRuntimeConfig()
+const props = defineProps(["admin"])
 
 const instances = useInstanceManager()
 
@@ -101,7 +102,11 @@ function closeInstanceSwitcher() {
 
 async function switchInstance(id) {
     instances.setInstance(id)
-    await navigateTo("/")
+    if (props.admin !== undefined) {
+        await navigateTo("/admin")
+    } else {
+        await navigateTo("/")
+    }
     window.location.reload(false);
 }
 </script>
