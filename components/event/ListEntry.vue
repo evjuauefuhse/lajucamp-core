@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-row justify-between items-center py-1 space-x-1">
-        <router-link :to="'/events/' + props.item.id"  class="flex flex-row space-x-1 w-5/6">
+        <router-link :to="'/events/' + props.item.id" class="flex flex-row space-x-1 w-5/6">
             <div class="flex flex-col text-sm font-bold">
                 <EventListEntryDateContainer :record="props.item" />
             </div>
@@ -19,7 +19,7 @@
 
 
         <div v-if="props.showFavoriteButton">
-            <FavoriteButton :id="props.item.id" />
+            <EventFavoritesButton :id="props.item.id" />
         </div>
     </div>
 </template>
