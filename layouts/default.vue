@@ -1,6 +1,6 @@
 <template>
     <LayoutThemeHelper class="min-h-full">
-        <div>
+        <div v-if="phone">
             <LayoutTopbar class="sticky top-0 z-50" />
             <main :data-theme="theme.getCurrentTheme()" class="content px-3 bg-background relative pb-16">
                 <slot />
@@ -8,20 +8,16 @@
             <LayoutBottomNavigation :class="assembleNavbarClass()" />
             <div v-if="shouldShiftNavbar()" class="fixed bottom-0 left-0 min-h-4 h-4 w-full bg-base-100 z-10"></div>
         </div>
-        <!--
         <div v-else>
-            <div class="flex flex-col justify-center items-center h-screen">
-                <span class="loading loading-spinner" />
-                <span>Bitte warten...</span>
-                <DevOnly><span>{{ instances.shouldDoInitialSetup() }}</span></DevOnly>
-            </div>
-        </div>-->
-
+            <LayoutSidebar>
+                <slot />
+            </LayoutSidebar>
+        </div>
     </LayoutThemeHelper>
 </template>
 
 <script setup>
-import { useLocalStorage } from "@vueuse/core"
+import { breakpointsTailwind, useBreakpoints, useLocalStorage } from "@vueuse/core"
 
 const theme = useTheme()
 console.debug("Populating cache")
@@ -33,6 +29,8 @@ const postStore = useLocalStorage("postStore", { updated: null, items: [] })
 
 const instances = useInstanceManager()
 const device = useDevice()
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const phone = breakpoints.smaller('md')
 
 if (!instances.shouldDoInitialSetup && process.client) {
     const categoryManager = useCategoryManager()
@@ -66,9 +64,9 @@ function shouldShiftNavbar() {
 
 function assembleNavbarClass() {
     if (shouldShiftNavbar()) {
-        return "z-10 mb-4"
+        return "z-10 mb-4 lg:hidden"
     } else {
-        return "z-10"
+        return "z-10 lg:hidden"
     }
 }
 </script>

@@ -75,53 +75,15 @@ function openMoreDialog() {
 function closeMoreDialog() {
     more_dialog.close()
 }
-const routes = {
-    home: [
-        'index'
-    ],
-    events: [
-        'events',
-        'events-id',
-        'category',
-        'category-id',
-        'search',
-        'search-query'
-    ],
-    music: [
-        'music',
-        'music-id',
-        'songFallback',
-        'songFallback-id'
-    ],
-    news: [
-        'posts',
-        'posts-id'
-    ],
-    more: [
-        'test',
-        'misc',
-        'misc-settings-keys',
-        'misc-settings-keys-add',
-        'misc-settings-appearance',
-        'misc-page-id',
-        'misc-about',
-        'misc-about-changelog',
-        'misc-about-license',
-        'misc-install',
-        'misc-devel',
-        "pictures",
-        "lostandfound",
-        "lostandfound-claim-id",
-        "lostandfound-success"
-    ]
-}
 
+const routes = groupedRoutes
 const config = useRuntimeConfig()
 
 const instances = useInstanceManager()
+
 const cookie = useCookie("keys_" + instances.instance().id, { expires: new Date('9999-12-31') })
 
-function hackyCookieWorkaround() {
+const hackyCookieWorkaround = () => {
     const currentType = typeof cookie.value
     if (currentType === "string") {
         return JSON.parse(cookie.value)
@@ -130,11 +92,10 @@ function hackyCookieWorkaround() {
     }
 }
 
-function checkMusicAccess() {
+const checkMusicAccess = () => {
     if (cookie.value === undefined) return false
     const data = hackyCookieWorkaround()
     return data.some(obj => obj.allowMusic === true)
 }
-
 
 </script>

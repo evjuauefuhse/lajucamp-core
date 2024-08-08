@@ -63,7 +63,7 @@ async function search() {
         locations.value = null
         songs.value = null
     } else {
-        console.log("Searching")
+        console.debug("Searching")
         events.value = await pb.collection('events').getFullList({
             sort: 'name',
             filter: "name~'" + query.value + "' || description~'" + query.value + "'",

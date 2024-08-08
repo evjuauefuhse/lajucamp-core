@@ -4,7 +4,7 @@
         <HomepageWelcomeCardBundle />
         <HomepageEventListCard v-if="instance.instance().eventmode === 'event'" />
         <HomepageRestrictedCard v-else />
-        <SingleNewsCard />
+        <HomepageSingleNewsCard />
         <HomepageInstallCard />
     </div>
 </template>
