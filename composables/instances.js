@@ -12,13 +12,17 @@ export const useInstanceManager = () => {
             const app = (await pb.collection('metadata').getFirstListItem('key="app"')).value
             const instance_id = (await pb.collection('metadata').getFirstListItem('key="instance"')).value.id
             const eventmode = (await pb.collection('metadata').getFirstListItem('key="events"')).value.mode
-            storage.value.items.push({
-                name: app.name,
-                team: app.team,
-                id: instance_id,
-                url: url,
-                eventmode: eventmode
-            })
+            if(!storage.value.items.some(item => item.id === instance_id)) {
+                storage.value.items.push({
+                    name: app.name,
+                    team: app.team,
+                    id: instance_id,
+                    url: url,
+                    eventmode: eventmode
+                })
+            } else {
+                console.warn("Trying to add already existing instance, skipping...")
+            }
             storage.value.updated = new Date()
             return instance_id
         },

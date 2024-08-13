@@ -56,7 +56,7 @@
                                 </div>
                                 <div v-else class="flex flex-col w-fill space-y-3">
                                     <input v-model="url" type="text" placeholder="https://backend.beispiel-evju.de"
-                                        class="input input-bordered w-full max-w-xs" />
+                                        class="input input-bordered w-full" />
                                 </div>
                                 <div class="flex flex-row justify-start">
                                     <div class="btn btn-ghost" @click="showManualInput = !showManualInput">
