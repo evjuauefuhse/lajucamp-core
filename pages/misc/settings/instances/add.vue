@@ -65,9 +65,20 @@
                                 </div>
                             </CardLikeContainer>
                         </div>
+                        <div v-show="step === 2">
+                            <div class="flex flex-row justify-center w-full pt-8">
+                                <span class="text-3xl font-black">Lizenzhinweis</span>
+                            </div>
+                            <div class="flex flex-row justify-center pt-5">
+                                <span class="text-center text-sm"> Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.
+                                    Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.
+                                    Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, siehe http://www.gnu.org/licenses/. </span>
+                            </div>
+                        </div>
                         <div class="pt-5 flex flex-row justify-center">
                             <div @click="next" :class="assembleButtonClass()">
-                                Weiter
+                                <div v-if="step !== 2">Weiter</div>
+                                <div v-else>Akzeptieren</div>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor"
                                     class="size-6 transition-transform duration-300 group-hover:translate-x-1">
@@ -172,14 +183,17 @@ async function next() {
         if (showManualInput.value === true) {
             const instance_id = await instances.addInstance(url.value);
             instances.setInstance(instance_id);
-            await navigateTo("/");
         } else {
             const instance_id = await instances.addInstance(
                 data.value.instances[sprengel.value].content[kirchenkreis.value].url
             );
             instances.setInstance(instance_id);
-            await navigateTo("/");
         }
+        step.value++
+        return
+    }
+    if (step.value === 2) {
+        await navigateTo("/")
     }
 }
 </script>
