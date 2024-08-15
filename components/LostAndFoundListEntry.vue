@@ -20,5 +20,5 @@
 
 <script setup>
 const props = defineProps(['item'])
-const pb = usePocketBase()
+const pb = useInstanceManager().getPocketBase()
 </script>

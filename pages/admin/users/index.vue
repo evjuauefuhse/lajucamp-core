@@ -51,8 +51,8 @@
                         <div class="label">
                             <span class="label-text">Vor- und Nachname</span>
                         </div>
-                        <input type="text" v-model="name" placeholder="Max Mustermann" class="input input-bordered w-full"
-                            :disabled="submitting" />
+                        <input type="text" v-model="name" placeholder="Max Mustermann"
+                            class="input input-bordered w-full" :disabled="submitting" />
                         <div class="label">
                             <span class="label-text">E-Mail Addresse</span>
                         </div>
@@ -172,7 +172,8 @@
                 <span>Benutzername: <span class="font-bold">{{ displayed_username }}</span></span><br />
                 <span>Passwort: <span class="font-bold">{{ displayed_password }}</span></span>
 
-                <p>Teile diese Zugangsdaten dem neuen Benutzer mit. Das Passwort muss beim ersten Login geändert werden.</p>
+                <p>Teile diese Zugangsdaten dem neuen Benutzer mit. Das Passwort muss beim ersten Login geändert werden.
+                </p>
             </div>
             <div class="modal-action">
                 <button class="btn btn-neutral" @click="closeSuccessModal()">
@@ -181,41 +182,42 @@
             </div>
         </div>
     </dialog>
-      <dialog id="delete_modal" class="modal">
-    <div class="modal-box">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" @click="closeDeleteDialog()">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-          <path
-            d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
-        </svg>
-      </button>
-      <h3 class="font-bold text-lg">Diesen Benutzer wirklich löschen?</h3>
-      <div v-if="error" role="alert" class="alert alert-error mb-3 mt-3">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-        </svg>
+    <dialog id="delete_modal" class="modal">
+        <div class="modal-box">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" @click="closeDeleteDialog()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                    <path
+                        d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                </svg>
+            </button>
+            <h3 class="font-bold text-lg">Diesen Benutzer wirklich löschen?</h3>
+            <div v-if="error" role="alert" class="alert alert-error mb-3 mt-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                </svg>
 
-        <div>
-          Der Benutzer konnte nicht gelöscht werden. Bitte kontaktiere deine*n Systemadministrator*in.<DevOnly>
-            <span class="mt-4"><br />Fehler: {{ errorMessage }} </span>
-          </DevOnly>
+                <div>
+                    Der Benutzer konnte nicht gelöscht werden. Bitte kontaktiere deine*n Systemadministrator*in.
+                    <DevOnly>
+                        <span class="mt-4"><br />Fehler: {{ errorMessage }} </span>
+                    </DevOnly>
+                </div>
+            </div>
+            <div class="py-4">Dieser Vorgang kann nicht rückgängig gemacht werden.</div>
+            <div class="modal-action">
+                <button class="btn pr-3" @click="closeDeleteDialog()">Abbrechen</button>
+                <button :disabled="submitting" class="btn btn-error" @click="confirmDelete()">
+                    <div v-if="submitting">
+                        <span class="loading loading-spinner loading-xs"></span>
+                        Übertragen...
+                    </div>
+                    <div v-else>Löschen</div>
+                </button>
+            </div>
         </div>
-      </div>
-      <div class="py-4">Dieser Vorgang kann nicht rückgängig gemacht werden.</div>
-      <div class="modal-action">
-        <button class="btn pr-3" @click="closeDeleteDialog()">Abbrechen</button>
-        <button :disabled="submitting" class="btn btn-error" @click="confirmDelete()">
-          <div v-if="submitting">
-            <span class="loading loading-spinner loading-xs"></span>
-            Übertragen...
-          </div>
-          <div v-else>Löschen</div>
-        </button>
-      </div>
-    </div>
-  </dialog>
+    </dialog>
     <div class="pl-3">
         <div class="overflow-x-auto">
             <AdminUserList :data="data" @edit="edit" @delete="deleteDialog" />
@@ -228,7 +230,7 @@ definePageMeta({
     layout: "admin",
 });
 
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 const settings = useSettingsManager()
 const data = ref(null);
 const submitting = ref(false);
@@ -452,34 +454,34 @@ function closeDeleteDialog() {
 }
 
 function deleteDialog(user) {
-  error.value = false;
-  errorMessage.value = "";
-  delete_modal.showModal();
-  selectedId = user.id
+    error.value = false;
+    errorMessage.value = "";
+    delete_modal.showModal();
+    selectedId = user.id
 }
 
 async function confirmDelete() {
-  submitting.value = true;
-  try {
-    const records = await pb.collection('user_settings').getFullList({
-        filter: "user='" + selectedId + "'",
-    });
-    
-    console.log(records)
-    for (var i = 0; i < records.length; i++) {
-        console.log("Deleting", records[i].id)
-        await pb.collection('user_settings').delete(records[i].id);
+    submitting.value = true;
+    try {
+        const records = await pb.collection('user_settings').getFullList({
+            filter: "user='" + selectedId + "'",
+        });
+
+        console.debug(records)
+        for (var i = 0; i < records.length; i++) {
+            console.debug("Deleting", records[i].id)
+            await pb.collection('user_settings').delete(records[i].id);
+        }
+        await pb.collection("users").delete(selectedId);
+        await getAllUsers();
+    } catch (e) {
+        error.value = true;
+        errorMessage.value = e.message;
+    } finally {
+        submitting.value = false;
+        if (!error.value) {
+            closeDeleteDialog();
+        }
     }
-    await pb.collection("users").delete(selectedId);
-    await getAllUsers();
-  } catch (e) {
-    error.value = true;
-    errorMessage.value = e.message;
-  } finally {
-    submitting.value = false;
-    if (!error.value) {
-      closeDeleteDialog();
-    }
-  }
 }
 </script>

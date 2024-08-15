@@ -12,7 +12,7 @@
 
 <script setup>
 const route = useRoute()
-const pb = usePocketBase()
+const pb = useInstanceManager().getPocketBase()
 const song = ref(null)
 
 onMounted(async () => {

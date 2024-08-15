@@ -4,10 +4,9 @@
       <h3 class="font-bold text-lg">Kameraeinstellungen</h3>
       <div class="pt-4">
         <p class="pb-4">Bitte wähle die Kamera aus, die du zum Scannen des QR-Codes verwenden möchtest.</p>
-        <select @change="setCamera" v-model="camid_storage"
-                class="select select-bordered w-full">
-                <option v-for="cam in cams" :value="cam.label" class="">{{ cam.label }}</option>
-              </select>
+        <select @change="setCamera" v-model="camid_storage" class="select select-bordered w-full">
+          <option v-for="cam in cams" :value="cam.label" class="">{{ cam.label }}</option>
+        </select>
       </div>
       <div class="modal-action">
         <form method="dialog">
@@ -21,7 +20,8 @@
   </div>
   <div class="card relative card-compact m-0 p-0 border-0 shadow-none overflow-hidden min-h-96 max-h-96">
     <div class="flex justify-center items-center h-full">
-      <div class="bg-neutral h-72 w-full flex justify-center items-center text-center align-center mx-auto" v-show="loading">
+      <div class="bg-neutral h-72 w-full flex justify-center items-center text-center align-center mx-auto"
+        v-show="loading">
         <span class="loading loading-dots loading-lg text-base-100"></span><br />
       </div>
       <figure v-show="!loading">
@@ -36,7 +36,8 @@
     </div>
     <div class="flex flex-row w-full">
       <button @click="$emit('switchToManual')" class="w-1/2 btn rounded-r-none rounded-tl-none">Code eintippen</button>
-      <button onclick="my_modal_1.showModal()" class="w-1/2 btn btn-secondary rounded-l-none rounded-tr-none">Einstellungen</button>
+      <button onclick="my_modal_1.showModal()"
+        class="w-1/2 btn btn-secondary rounded-l-none rounded-tr-none">Einstellungen</button>
     </div>
 
   </div>
@@ -90,7 +91,7 @@ onMounted(() => {
   if (process.client) {
     QrScanner.listCameras(true).then((devices: QrScanner.Camera[]) => {
       cams.value = devices;
-      console.log(devices);
+      console.debug(devices);
     });
 
     const vid = window.document.getElementById('qr-video');
@@ -107,7 +108,7 @@ onMounted(() => {
       qrScanner.value.start();
       loading.value = false
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 });

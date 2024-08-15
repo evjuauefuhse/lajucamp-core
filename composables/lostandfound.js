@@ -1,8 +1,9 @@
 import { useLocalStorage } from "@vueuse/core"
 
 export const useLostFoundManager = () => {
-    const pb = usePocketBase()
-    const storage = useLocalStorage("lostandfoundStore", { updated: null, items: [] })
+    const instances = useInstanceManager()
+    const pb = instances.getPocketBase()
+    const storage = useLocalStorage("lostandfoundStore_" + instances.instance().id, { updated: null, items: [] })
 
     async function getInternalLostFoundList() {
         const response = await pb.collection('lostandfound').getFullList();

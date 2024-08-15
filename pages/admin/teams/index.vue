@@ -1,6 +1,6 @@
 <template>
-  <AdminLayoutHeader title="Sprengelverwaltung" subtitle="Hier können Sprengel angelegt, bearbeitet und gelöscht werden."
-    :path="[
+  <AdminLayoutHeader title="Sprengelverwaltung"
+    subtitle="Hier können Sprengel angelegt, bearbeitet und gelöscht werden." :path="[
       { name: 'Home', path: '/admin', active: false },
       { name: 'Sprengel', path: '/admin/teams', active: true },
     ]">
@@ -105,7 +105,7 @@ definePageMeta({
   layout: "admin",
 });
 
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 const data = ref(null);
 const submitting = ref(false);
 const error = ref(false);
@@ -172,7 +172,7 @@ async function save() {
 
 function assembleTeam() {
   formData.set("name", name.value);
-  if(link.value !== null) {
+  if (link.value !== null) {
     formData.set("link", link.value);
   }
 }
@@ -227,7 +227,7 @@ async function saveEdited() {
   submitting.value = true;
   assembleTeam();
   const updated = await pb.collection("teams").update(selectedId, formData);
-  console.log(formData)
+  console.debug(formData)
   await getAllTeams();
   submitting.value = false;
   closeDialog();

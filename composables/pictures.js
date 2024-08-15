@@ -1,9 +1,10 @@
 import { useLocalStorage } from "@vueuse/core"
 
 export const usePictureManager = () => {
-    const pb = usePocketBase()
+    const instances = useInstanceManager()
+    const pb = instances.getPocketBase()
 
-    const storage = useLocalStorage("pictureStore", { updated: null, items: [] })
+    const storage = useLocalStorage("pictureStore_" + instances.instance().id, { updated: null, items: [] })
 
     async function getInternalPictureList() {
         const response = await pb.collection('images').getFullList({

@@ -18,7 +18,7 @@
 
 <script setup>
 const route = useRoute()
-const pb = usePocketBase()
+const pb = useInstanceManager().getPocketBase()
 let post = ref(null)
 
 onMounted(async () => {

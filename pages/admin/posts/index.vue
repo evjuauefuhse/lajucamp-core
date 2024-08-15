@@ -97,7 +97,7 @@ definePageMeta({
   layout: "admin",
 });
 
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 const data = ref(null);
 const action = ref(-1);
 let formData = null;
@@ -200,7 +200,7 @@ function edit(post) {
 }
 
 async function saveEdited() {
-  console.log(selectedId);
+  console.debug(selectedId);
   submitting.value = true;
   const updated = await pb.collection("posts").update(selectedId, assembleEditPost());
   await getAllPosts();
@@ -220,7 +220,7 @@ async function saveNew() {
 async function confirmDelete() {
   submitting.value = true;
   const record = await pb.collection("posts").getOne(selectedId, {});
-  console.log(record);
+  console.debug(record);
   await pb.collection("posts").delete(record.id);
   await getAllPosts();
   closeDeleteDialog();

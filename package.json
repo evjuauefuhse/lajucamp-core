@@ -28,6 +28,7 @@
     "@vuepic/vue-datepicker": "^7.3.0",
     "@vueup/vue-quill": "^1.2.0",
     "@vueuse/core": "^10.4.1",
+    "@vueuse/gesture": "^2.0.0",
     "ckeditor5-custom-build": "file:./ckeditor5/",
     "js-cookie": "^3.0.5",
     "nuxt-swiper": "^1.2.2",
@@ -35,7 +36,8 @@
     "pocketbase": "file:./pb-js-sdk/",
     "qr-scanner": "^1.4.2",
     "simple-analytics-vue": "^3.0.2",
-    "unplugin-auto-import": "^0.17.5"
+    "unplugin-auto-import": "^0.17.5",
+    "uuid": "^10.0.0"
   },
   "resolutions": {
     "string-width": "4.2.3"

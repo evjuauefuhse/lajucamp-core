@@ -1,5 +1,6 @@
 export const useSettingsManager = () => {
-    const pb = usePocketBase()
+    const instances = useInstanceManager()
+    const pb = instances.getPocketBase()
     const currentUser = pb.authStore.model.id
 
     const SettingsManager = {
@@ -25,7 +26,7 @@ export const useSettingsManager = () => {
             } catch (e) {
                 exists = false
             }
-            console.log(exists)
+            console.debug(exists)
             if (exists) {
                 res = await pb.collection('user_settings').update(response.id, { content: value })
             } else {
@@ -42,7 +43,7 @@ export const useSettingsManager = () => {
             } catch (e) {
                 exists = false
             }
-            console.log(exists)
+            console.debug(exists)
             if (exists) {
                 res = await pb.collection('user_settings').update(response.id, { content: value })
             } else {
