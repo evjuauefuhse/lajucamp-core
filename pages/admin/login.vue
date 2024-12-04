@@ -81,7 +81,7 @@
             <span v-if="wrong" class="font-light text-red-600 text-sm">Falsche Zugansdaten.</span>
           </form>
           <p class="px-8 text-center text-sm text-muted-foreground">
-            Copyright © 2024 Evangelische Jugend im Kirchenkreis Burgdorf.
+            Copyright © 2024 Evangelische Jugend an Aue und Fuhse.
           </p>
         </div>
       </div>

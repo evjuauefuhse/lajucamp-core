@@ -10,7 +10,7 @@
           <img v-if="theme.isDark()" src="~assets/ejkkbu_darkmode.png" class="w-1/3" />
           <img v-else src="~assets/ejkkbu.png" class="w-1/3" />
         </figure>
-        <span class="text-center">Copyright © 2024 Evangelische Jugend im Kirchenkreis Burgdorf.</span>
+        <span class="text-center">Copyright © 2024 Evangelische Jugend an Aue und Fuhse.</span>
       </div>
     </div>
     <div class="card card-compact w-full bg-base-100 shadow-xl">
@@ -115,7 +115,7 @@ const clicked = ref(0)
 
 async function clickLogo() {
   clicked.value++
-  if(clicked.value === 7) {
+  if (clicked.value === 7) {
     alert("Achtung: Du betrittst die Entwickleroptionen. Klicke keine Knöpfe, die du nicht verstehst!")
     clicked.value = 0
     await navigateTo("/misc/devel")
