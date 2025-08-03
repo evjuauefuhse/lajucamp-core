@@ -1,8 +1,9 @@
 import { useLocalStorage } from "@vueuse/core"
 
 export const useTeamManager = () => {
-    const pb = usePocketBase()
-    const storage = useLocalStorage("teamStore", { updated: null, items: [] })
+    const instances = useInstanceManager()
+    const pb = instances.getPocketBase()
+    const storage = useLocalStorage("teamStore_" + instances.instance().id, { updated: null, items: [] })
 
     async function getInternalTeamList() {
         const response = await pb.collection('teams').getFullList();

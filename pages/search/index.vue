@@ -26,7 +26,7 @@
 
 <script setup>
 const query = ref("")
-const pb = usePocketBase()
+const pb = useInstanceManager().getPocketBase()
 const events = ref(null)
 const categories = ref(null)
 const songs = ref(null)
@@ -63,7 +63,7 @@ async function search() {
         locations.value = null
         songs.value = null
     } else {
-        console.log("Searching")
+        console.debug("Searching")
         events.value = await pb.collection('events').getFullList({
             sort: 'name',
             filter: "name~'" + query.value + "' || description~'" + query.value + "'",

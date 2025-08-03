@@ -1,8 +1,10 @@
 import { useLocalStorage } from "@vueuse/core"
 
 export const useWelcomeManager = () => {
-    const pb = usePocketBase()
-    const storage = useLocalStorage("welcomeMessageStore", { updated: null, items: [] })
+    const instances = useInstanceManager()
+    const pb = instances.getPocketBase()
+
+    const storage = useLocalStorage("welcomeMessageStore_" + instances.instance().id, { updated: null, items: [] })
 
 
     async function getInternalMessageList() {

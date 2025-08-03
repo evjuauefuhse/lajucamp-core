@@ -1,9 +1,10 @@
 import { useLocalStorage } from "@vueuse/core"
 
 export const usePageManager = () => {
-    const pb = usePocketBase()
+    const instances = useInstanceManager()
+    const pb = instances.getPocketBase()
 
-    const storage = useLocalStorage("pageStore", { updated: null, items: [] })
+    const storage = useLocalStorage("pageStore_" + instances.instance().id, { updated: null, items: [] })
 
     async function getInternalPageList() {
         const response = await pb.collection('pages').getFullList({

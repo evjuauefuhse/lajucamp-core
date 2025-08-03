@@ -17,6 +17,6 @@
 const props = defineProps(["team"]);
 const data = ref(null);
 const teamManager = useTeamManager();
-const pb = usePocketBase();
+const pb = useInstanceManager().getPocketBase();
 data.value = await teamManager.getById(props.team);
 </script>

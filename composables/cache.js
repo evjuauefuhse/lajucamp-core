@@ -3,14 +3,15 @@ import { useOnline } from "@vueuse/core"
 export const shouldUpdateCache = async (storage, remote) => {
     const cookie = useCookie("keys", { expires: new Date('9999-12-31') })
     const online = useOnline()
-    const pb = usePocketBase()
-    console.log(storage.value)
+    const instances = useInstanceManager()
+    const pb = instances.getPocketBase()
+    console.debug(storage.value)
 
-    if(online.value === false) {
+    if (online.value === false) {
         console.debug("User is offline, not updating cache")
         return false
     }
-    if(storage.value.updated === null || storage.value === null) {
+    if (storage.value.updated === null || storage.value === null) {
         console.debug("Cache is empty, updating cache")
         return true
     }
@@ -36,29 +37,29 @@ export const shouldUpdateCache = async (storage, remote) => {
     let remote_updated_date = null
     let local_updated_date = null
 
-    if(remote !== null) {
+    if (remote !== null) {
         try {
             const res = await pb.collection(remote).getList(1, 1, {
                 sort: "-updated",
             })
-                remote_updated_date = new Date(res.items[0].updated)
-                console.debug("Last remote update on " + remote, remote_updated_date)
-                local_updated_date = new Date(storage.value.updated)
-                console.debug("Last local update on " + remote, local_updated_date)
-                if(remote_updated_date > local_updated_date) {
-                    console.debug("Remote is newer, updating cache")
-                    return true
-                } else {
-                    console.debug("Local is newer, not updating cache")
-                    return false
-                }
-            
+            remote_updated_date = new Date(res.items[0].updated)
+            console.debug("Last remote update on " + remote, remote_updated_date)
+            local_updated_date = new Date(storage.value.updated)
+            console.debug("Last local update on " + remote, local_updated_date)
+            if (remote_updated_date > local_updated_date) {
+                console.debug("Remote is newer, updating cache")
+                return true
+            } else {
+                console.debug("Local is newer, not updating cache")
+                return false
+            }
+
         } catch (e) {
             if (e instanceof TypeError) {
-                console.log("No data in Backend, keeping local cache")
+                console.debug("No data in Backend, keeping local cache")
             }
         }
-        
+
     } else {
         alert("Inproper use of shouldUpdateCache, remote is null")
         return true
