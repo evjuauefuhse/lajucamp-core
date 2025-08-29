@@ -6,6 +6,9 @@ export const useInstanceManager = () => {
     const storage = useLocalStorage("instancesStore", { updated: null, items: [] })
     const instance = useLocalStorage("selectedInstance", { selected: null })
 
+    async function update_instance_meta(id) {
+	instance = storage.value.items.find(item => item.id === id) || null
+    }
     const instanceManager = {
         addInstance: async (url) => {
             const pb = new PocketBase(url)

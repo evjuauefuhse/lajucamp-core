@@ -52,6 +52,12 @@
             class="input input-bordered w-full"
             :disabled="submitting"
           />
+        <div v-show="action === 0" class="label">
+          <span class="label-text">Lageplan</span>
+        </div>
+        <input v-show="action === 0" type="file" id="fileInput" accept="image/webp"
+          class="file-input file-input-bordered w-full" />
+
         </div>
         <div class="modal-action">
           <button class="btn pr-3" :disabled="submitting" @click="closeDialog()">
@@ -151,6 +157,7 @@ const data = ref(null);
 const submitting = ref(false);
 const error = ref(false);
 const errorMessage = ref("");
+let formData = null;
 // 0: Create, 1: Edit
 let action = ref(-1);
 
@@ -162,7 +169,17 @@ let selectedId = 0;
 function reset() {
   name.value = null;
   action.value = -1;
+  formData = null;
 }
+onMounted(() => {
+  const fileInput = document.getElementById("fileInput");
+  fileInput.addEventListener("change", function () {
+    for (let file of fileInput.files) {
+      formData.set("mapimage", file);
+    }
+  });
+});
+
 
 async function getAllLocations() {
   let payload = {
@@ -174,6 +191,7 @@ async function getAllLocations() {
 await getAllLocations();
 
 function openCreateDialog() {
+  formData = new FormData();
   action.value = 0;
   my_modal_1.showModal();
 }
@@ -184,9 +202,8 @@ function closeDialog() {
 }
 
 function assembleLocation() {
-  return {
-    name: name.value,
-  };
+formData.set("name", name.value)
+return formData
 }
 
 async function save() {

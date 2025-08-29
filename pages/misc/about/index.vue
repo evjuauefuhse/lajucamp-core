@@ -10,7 +10,7 @@
           <img v-if="theme.isDark()" src="~assets/ejkkbu_darkmode.png" class="w-1/3" />
           <img v-else src="~assets/ejkkbu.png" class="w-1/3" />
         </figure>
-        <span class="text-center">Copyright © 2024 Evangelische Jugend an Aue und Fuhse.</span>
+        <span class="text-center">Copyright © 2025 Evangelische Jugend an Aue und Fuhse.</span>
       </div>
     </div>
     <div class="card card-compact w-full bg-base-100 shadow-xl">
