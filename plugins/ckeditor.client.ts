@@ -1,8 +1,8 @@
 import CKEditor from "@ckeditor/ckeditor5-vue";
-import Editor from 'ckeditor5-custom-build/build/ckeditor';
 
 
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin(async (nuxtApp) => {
+  const { default: Editor } = await import('ckeditor5-custom-build/build/ckeditor');
   nuxtApp.vueApp.use(CKEditor);
   return {
     provide: {
