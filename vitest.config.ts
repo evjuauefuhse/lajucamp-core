@@ -1,18 +1,9 @@
-import vue from "@vitejs/plugin-vue";
-import AutoImport from "unplugin-auto-import/vite";
+import { defineVitestConfig } from '@nuxt/test-utils/vitest'
 
-export default {
-  plugins: [
-    vue(),
-    AutoImport({
-      imports: ["vue"],
-    }),
-  ],
+export default defineVitestConfig({
+  // Your Vitest config (e.g., environment, globals)
   test: {
-    globals: true,
-    environment: "happy-dom",
-  },
-  coverage: {
-    all: true,
-  },
-};
+    environment: 'nuxt',
+    globals: true
+  }
+})
