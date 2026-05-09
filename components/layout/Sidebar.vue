@@ -166,7 +166,8 @@ function checkAccessKey(record) {
         }
         else {
             console.debug("Check if cookie contains featureKey")
-            return cookie.value.some(obj => obj.id === record.featureKey)
+	    console.log(typeof cookie.value);
+            return JSON.parse(cookie.value).some(obj => obj.id === record.featureKey)
         }
     }
 
