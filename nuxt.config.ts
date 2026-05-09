@@ -1,7 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  //ssr: false,
+  ssr: false,
+  experimental: {
+    viteEnvironmentApi: true,
+  },
   modules: ['@nuxtjs/tailwindcss', '@kevinmarrec/nuxt-pwa', '@nuxtjs/device', 'nuxt-swiper', '@pinia/nuxt'],
   tailwindcss: {
     config: {

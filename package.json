@@ -32,7 +32,7 @@
     "js-cookie": "^3.0.5",
     "nuxt-swiper": "^1.2.2",
     "pinia": "^2.1.7",
-    "pocketbase": "file:./pb-js-sdk/",
+    "pocketbase": "^0.26.8",
     "qr-scanner": "^1.4.2",
     "simple-analytics-vue": "^3.0.2",
     "unplugin-auto-import": "^0.17.5",
