@@ -46,7 +46,7 @@ const emit = defineEmits(["close"])
 function close() {
     emit("close")
 }
-function hackyCookieWorkaround() {
+const hackyCookieWorkaround = () => {
     const currentType = typeof cookie.value
     if (currentType === "string") {
         return JSON.parse(cookie.value)
@@ -54,7 +54,6 @@ function hackyCookieWorkaround() {
         return cookie.value
     }
 }
-
 function checkMusicAccess() {
     if (cookie.value === undefined) return false
     const data = hackyCookieWorkaround()
@@ -83,6 +82,7 @@ function checkPictureAccess() {
 }
 
 function checkAccessKey(record) {
+    const data = hackyCookieWorkaround()
     if (!record.needsFeatureKey) {
         console.debug("Allow because no featureKey set")
         return true
@@ -94,7 +94,7 @@ function checkAccessKey(record) {
         }
         else {
             console.debug("Check if cookie contains featureKey")
-            return cookie.value.some(obj => obj.id === record.featureKey)
+            return data.some(obj => obj.id === record.featureKey)
         }
     }
 
