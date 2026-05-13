@@ -5,7 +5,7 @@
         <HomepageEventListCard v-if="instance.instance().eventmode === 'event'" />
         <HomepageRestrictedCard v-else />
         <HomepageSingleNewsCard />
-        <HomepageInstallCard />
+	<!--        <HomepageInstallCard /> is not needed anymore as we aren't targeting PWA anymore -->
     </div>
 </template>
 
