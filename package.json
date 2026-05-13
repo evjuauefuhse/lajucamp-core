@@ -8,7 +8,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "test": "vitest",
-    "mobile:android": "cap open android"
+    "mobile:android": "cap sync android"
   },
   "devDependencies": {
     "@capacitor/cli": "^8.3.3",
@@ -27,7 +27,9 @@
   "dependencies": {
     "@capacitor/android": "^8.3.3",
     "@capacitor/app": "^8.1.0",
+    "@capacitor/barcode-scanner": "^3.0.2",
     "@capacitor/core": "^8.3.3",
+    "@capacitor/device": "^8.0.2",
     "@capacitor/ios": "^8.3.3",
     "@capacitor/keyboard": "^8.0.3",
     "@capacitor/preferences": "^8.0.1",

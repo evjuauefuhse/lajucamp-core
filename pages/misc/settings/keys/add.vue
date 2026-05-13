@@ -20,14 +20,17 @@
                 </div>
                 <br />
             </div>
-            <KeyScanner v-if="qr" class="my-4" @onScan="validateScan" @switch-to-manual="qr = false"></KeyScanner>
-
-            <div v-else class="flex flex-col">
+	    <div v-if="!qr" class="flex flex-col">
                 <input v-model="key" type="text" placeholder="Berechtigungsschlüssel eingeben"
                     class="input input-bordered w-full" />
                 <div class="flex flex-row justify-end py-4">
                     <div class="btn btn-ghost" @click="qr = true">Zurück zum Scanner</div>
                     <div :disabled="(key === '') ? 1 : False" class="btn btn-primary" @click="validate">Weiter</div>
+                </div>
+            </div>
+            <div v-if="qr" class="flex flex-col">
+                <div class="flex flex-row justify-end py-4">
+                    <div class="btn btn-ghost" @click="qr = false">Code eintippen</div>
                 </div>
             </div>
 
@@ -62,16 +65,63 @@
 </template>
 
 <script setup>
+import { Device } from '@capacitor/device';
+import { Capacitor } from '@capacitor/core';
+import {
+  CapacitorBarcodeScanner,
+  CapacitorBarcodeScannerAndroidScanningLibrary,
+  CapacitorBarcodeScannerCameraDirection,
+  CapacitorBarcodeScannerScanOrientation,
+  CapacitorBarcodeScannerTypeHint,
+} from '@capacitor/barcode-scanner';
 const step = ref(0)
 const key = ref("")
 const pb = useInstanceManager().getPocketBase()
 const showErrorMessage = ref(false)
 let record = null
 const qr = ref(true)
+const platform = ref()
+const scanning = ref(false)
 
 const instances = useInstanceManager()
 const cookie = useCookie("keys_" + instances.instance().id, { expires: new Date('9999-12-31') })
 
+onMounted(async () => {
+    platform.value = (await Device.getInfo()).platform;
+    await scanBarcode();
+});
+
+onUnmounted(() => {
+    if (scanning.value) {
+        CapacitorBarcodeScanner.stopScan();
+        scanning.value = false;
+    }
+});
+async function scanBarcode() {
+    if (scanning.value) return;
+    
+    scanning.value = true;
+    try {
+        
+        const result = await CapacitorBarcodeScanner.scanBarcode({
+            hint: CapacitorBarcodeScannerTypeHint.QR_CODE,
+            scanInstructions: 'Scanne den Berechtigungsschlüssel',
+            cameraDirection: CapacitorBarcodeScannerCameraDirection.BACK,
+        });
+        
+        if (result.ScanResult) {
+            validateScan(result.ScanResult);
+        }
+    } catch (error) {
+        console.error('Scan error:', error);
+    } finally {
+        scanning.value = false;
+    }
+    
+    if (Capacitor.getPlatform() !== 'web') {
+        await CapacitorBarcodeScanner.showBackground();
+    }
+}
 
 async function validate() {
     try {
@@ -92,13 +142,14 @@ async function validate() {
 
 async function confirm() {
     step.value = 2
+    console.log(cookie.value)
     if (cookie.value === undefined) {
         cookie.value = []
     }
-    let temp = cookie.value
+
+    let temp = JSON.parse(cookie.value)
     temp.push(record)
     cookie.value = JSON.stringify(temp, null, 2)
-    console.debug(cookie.value)
 }
 
 function validateJsonString(jsonString) {
