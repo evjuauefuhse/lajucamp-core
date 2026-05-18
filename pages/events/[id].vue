@@ -22,7 +22,7 @@
         <FavoriteButton :id="record.id" />
       </div>
       <TeamNote v-if="record.team !== undefined" :team="record.team" />
-      <div class="flex gap-2 py-2">
+      <div class="flex gap-2 py-2 flex-col sm:flex-row">
 	<EventLocationChip :name="record.expand.location.name" :id="record.expand.location.id" />
         <div class="badge badge-accent gap-2 badge-outline badge-md">
           <svg

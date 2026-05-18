@@ -1,5 +1,5 @@
 <template>
-	<button class="badge badge-info gap-2 badge-outline badge-md" @click="openDialog()">
+	<button class="badge badge-info gap-2 badge-outline badge-md whitespace-nowrap" @click="openDialog()">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"

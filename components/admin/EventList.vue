@@ -40,7 +40,7 @@
           </div>
         </td>
         <td>
-          <div class="badge badge-md badge-info gap-2 badge-outline">
+          <div class="badge badge-md badge-info gap-2 badge-outline whitespace-nowrap">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
