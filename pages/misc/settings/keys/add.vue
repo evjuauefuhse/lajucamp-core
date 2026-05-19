@@ -142,12 +142,12 @@ async function validate() {
 
 async function confirm() {
     step.value = 2
-    console.log(cookie.value)
-    if (cookie.value === undefined) {
-        cookie.value = []
+    let temp
+    if (cookie.value !== undefined) {
+        temp = cookie.value
+    } else {
+	temp = []
     }
-
-    let temp = JSON.parse(cookie.value)
     temp.push(record)
     cookie.value = JSON.stringify(temp, null, 2)
 }
