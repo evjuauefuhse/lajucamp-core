@@ -23,7 +23,7 @@
 	    <div v-if="!qr" class="flex flex-col">
                 <input v-model="key" type="text" placeholder="Berechtigungsschlüssel eingeben"
                     class="input input-bordered w-full" />
-                <div v-if="0" class="flex flex-row justify-end py-4">
+                <div class="flex flex-row justify-end py-4">
                     <div class="btn btn-ghost" @click="qr = true">Zurück zum Scanner</div>
                     <div :disabled="(key === '') ? 1 : False" class="btn btn-primary" @click="validate">Weiter</div>
                 </div>
