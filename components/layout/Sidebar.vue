@@ -48,8 +48,9 @@
                             class="z-100 flex flex-row space-x-2 m-3 justify-start items-center">
                             <div class="avatar">
                                 <div
-                                    class="ring-secondary ring-offset-base-100 w-12 rounded-full ring ring-offset-2 bg-base-300 text-neutral mr-2">
-                                    <!-- todo -->
+                                    class="ring-primary ring-offset-base-100 w-12 rounded-full ring ring-offset-2 bg-base-300 text-neutral mr-2">
+				    <img v-if="instanceImage != ''" :src="instanceImage" />
+				    {{ instanceImage }}
                                 </div>
                             </div>
                             <div class="flex flex-col">
@@ -133,6 +134,7 @@ const config = useRuntimeConfig()
 const pageManager = usePageManager()
 const cookie = useCookie("keys_" + instance.instance().id, { expires: new Date('9999-12-31') })
 const records = ref([])
+const instanceImage = ref("")
 function hackyCookieWorkaround() {
     const currentType = typeof cookie.value
     if (currentType === "string") {
@@ -175,6 +177,9 @@ function checkAccessKey(record) {
 
 onMounted(async () => {
     records.value = await pageManager.getList()
+    if("icon" in instance.instance()) {
+	instanceImage.value = instance.instance().icon
+    }
 })
 
 
