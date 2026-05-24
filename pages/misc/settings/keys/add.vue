@@ -144,7 +144,7 @@ async function confirm() {
     step.value = 2
     let temp
     if (cookie.value !== undefined) {
-        temp = cookie.value
+        temp = JSON.parse(cookie.value)
     } else {
 	temp = []
     }
