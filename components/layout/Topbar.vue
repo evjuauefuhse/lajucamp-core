@@ -24,8 +24,8 @@
                 <div class="btn btn-ghost normal-case text-xl p-2" @click="openSwitcher()">
                     <div class="avatar">
                         <div
-                            class="ring-secondary ring-offset-base-100 w-8 rounded-full ring ring-offset-2 bg-base-300 text-neutral mr-2">
-                            <!-- todo -->
+                            class="ring-primary ring-offset-base-100 w-8 rounded-full ring ring-offset-2 bg-base-300 text-neutral mr-2">
+				<img v-if="instanceImage != ''" :src="instanceImage" />
                         </div>
                     </div>
                     {{ instanceName }}
@@ -54,8 +54,13 @@
 <script setup>
 const instances = useInstanceManager()
 const instanceName = ref("")
+const instanceImage = ref("")
 onMounted(() => {
     instanceName.value = instances.instance().name
+    console.log(instances.instance())
+    if("icon" in instances.instance()) {
+	instanceImage.value = instances.instance().icon
+    }
 })
 const runtimeConfig = useRuntimeConfig()
 const device = useDevice()

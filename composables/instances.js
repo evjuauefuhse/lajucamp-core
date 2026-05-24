@@ -16,12 +16,17 @@ export const useInstanceManager = () => {
             const instance_id = (await pb.collection('metadata').getFirstListItem('key="instance"')).value.id
             const eventmode = (await pb.collection('metadata').getFirstListItem('key="events"')).value.mode
             if(!storage.value.items.some(item => item.id === instance_id)) {
+		let icon = null
+		if("icon" in app) {
+		    icon = app.icon
+		}
                 storage.value.items.push({
                     name: app.name,
                     team: app.team,
                     id: instance_id,
                     url: url,
-                    eventmode: eventmode
+                    eventmode: eventmode,
+		    icon: icon
                 })
             } else {
                 console.warn("Trying to add already existing instance, skipping...")

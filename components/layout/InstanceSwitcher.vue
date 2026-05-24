@@ -7,7 +7,7 @@
                     <div class="flex flex-row">
                         <div class="avatar">
                             <div class="w-12 rounded-full bg-base-300 text-neutral m-3">
-                                <!-- todo -->
+				<img v-if="instanceImage != null" :src="instanceImage" />
                             </div>
                         </div>
                         <div class="h-full flex flex-col my-3">
@@ -41,7 +41,7 @@
                     <div class="flex flex-col justify-center items-center">
                         <div class="avatar">
                             <div class="w-8 h-8 rounded-full bg-base-300 text-neutral m-3">
-                                <!-- todo -->
+				<img v-if="instanceImage != null" :src="instanceImage" />
                             </div>
                         </div>
                     </div>
@@ -96,6 +96,12 @@ const props = defineProps(["admin"])
 
 const instances = useInstanceManager()
 
+const instanceImage = ref("")
+onMounted(() => {
+    if("icon" in instances.instance()) {
+        instanceImage.value = instances.instance().icon
+    }
+})
 function closeInstanceSwitcher() {
     emit("close")
 }
@@ -109,4 +115,6 @@ async function switchInstance(id) {
     }
     window.location.reload(false);
 }
+
+
 </script>
