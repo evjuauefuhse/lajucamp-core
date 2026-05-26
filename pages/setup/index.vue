@@ -162,6 +162,12 @@
                                                 </div>
                                                 <input type="text" class="input input-lg input-bordered w-full"
                                                     v-model="teamName" @change="errormessage = ''" />
+						<div class="label">
+                                                    <span class="label-text">App Symbol</span>
+                                                </div>
+                                                <input type="text" class="input input-lg input-bordered w-full"
+                                                    v-model="appIcon" @change="errormessage = ''" />
+
                                                 <label class="label cursor-pointer">
                                                     <span class="label-text">Veranstaltungsmodus</span>
                                                     <input v-model="eventmode" type="checkbox" class="toggle"
@@ -323,6 +329,7 @@ let authData = null
 // Step 3
 const appName = ref()
 const teamName = ref()
+const appIcon = ref()
 const eventmode = ref(false)
 
 // Step 4
@@ -367,7 +374,7 @@ async function nextStep() {
         }
         step.value++
     } else if (step.value === 3) {
-        if (appName.value === "" || appName.value === undefined || teamName.value === "" || teamName.value === undefined) {
+        if (appName.value === "" || appName.value === undefined || teamName.value === "" || teamName.value === undefined || appIcon.value === "" || appIcon.value === undefined) {
             errormessage.value = "Bitte gib einen gültigen App-Namen ein."
         } else {
             step.value++
@@ -405,7 +412,7 @@ async function nextStep() {
         };
         const user = await pb.collection('users').create(userData);
         await pb.collection('metadata').create({ "key": "setup", "value": { "completed": true } });
-        await pb.collection('metadata').create({ "key": "app", "value": { "name": appName.value, "team": teamName.value } });
+        await pb.collection('metadata').create({ "key": "app", "value": { "name": appName.value, "team": teamName.value, "icon": appIcon.value } });
         await pb.collection('user_settings').create({ "user": user.id, "setting": "oobe_password_set", "content": { "success": true } })
         await pb.collection('metadata').create({ "key": "instance", "value": { "id": uuidv4() } });
         if (eventmode.value) {
