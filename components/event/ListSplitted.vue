@@ -4,6 +4,7 @@
             <form method="dialog">
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
+
             <h3 class="font-bold text-lg">Filter</h3>
             <div class="pt-4">
                 <div class="collapse collapse-plus">
@@ -100,6 +101,7 @@
             </div>
         </div>
     </dialog>
+
     <div class="flex justify-between">
         <div v-if="!loading" role="tablist" class="tabs tabs-boxed w-min">
             <div v-for="(item, index) in records" :class="'tab' + ((activeTab === index) ? ' tab-active' : '')"
@@ -162,6 +164,12 @@
 </template>
 
 <script setup>
+const props = defineProps({
+    filtercat: {
+	type: String,
+	required: false
+    }
+})
 const eventManager = useEventManager()
 const records = ref(null)
 const skipPast = ref(true)
@@ -180,7 +188,6 @@ const teamManager = useTeamManager()
 const teams = ref(null);
 
 const filter = useEventFilters()
-
 const settings = useUserSettings()
 
 onMounted(async () => {
@@ -192,6 +199,12 @@ onMounted(async () => {
     if (tab !== undefined) {
         activeTab.value = tab
         swiper.value.slideTo(tab, 200, false)
+    }
+    if(props.filtercat !== undefined) {
+	filter.showAllTeams()
+	filter.showAllLocations()
+	filter.showAllCategories()
+	filter.toggleCategory(props.filtercat)
     }
     loading.value = false
 

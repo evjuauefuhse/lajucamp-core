@@ -13,7 +13,7 @@
                 <span class="text-sm font-light">Kategorien</span>
                 <CategoryListEntry v-for="category in categories" :key="category.id" :category="category" />
             </div>
-            <div v-if="allowMusic && songs !== null && songs.length > 0">
+            <div v-if="checkMusicAccess() && songs !== null && songs.length > 0">
                 <span class="text-sm font-light">Lieder</span>
                 <MusicListEntry v-for="song in songs" :item="song" :key="song.id" />
             </div>
@@ -32,12 +32,13 @@ const categories = ref(null)
 const songs = ref(null)
 const locationList = ref({})
 const categoryList = ref({})
-const allowMusic = ref(false)
 const config = useRuntimeConfig()
 
-const cookie = useCookie("keys", { expires: new Date('9999-12-31') })
+const instances = useInstanceManager()
 
-function hackyCookieWorkaround() {
+const cookie = useCookie("keys_" + instances.instance().id, { expires: new Date('9999-12-31') })
+
+const hackyCookieWorkaround = () => {
     const currentType = typeof cookie.value
     if (currentType === "string") {
         return JSON.parse(cookie.value)
@@ -46,15 +47,11 @@ function hackyCookieWorkaround() {
     }
 }
 
-function checkMusicAccess() {
+const checkMusicAccess = () => {
     if (cookie.value === undefined) return false
     const data = hackyCookieWorkaround()
     return data.some(obj => obj.allowMusic === true)
 }
-
-onMounted(async () => {
-    allowMusic.value = checkMusicAccess()
-})
 
 async function search() {
     if (query === "" || query === null) {
@@ -74,7 +71,7 @@ async function search() {
             sort: 'name',
             filter: "name~'" + query.value + "' || description~'" + query.value + "'"
         });
-        if (allowMusic.value) {
+        if (checkMusicAccess()) {
             songs.value = await pb.collection('songs').getFullList({
                 sort: 'name',
                 filter: "name~'" + query.value + "' || author~'" + query.value + "'"
