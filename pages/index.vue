@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col space-y-3">
-        <HomePageOfflineCard v-if="!online" />
+        <HomepageOfflineCard v-if="!online" />
         <HomepageWelcomeCardBundle />
         <HomepageEventListCard v-if="instance.instance().eventmode === 'event'" />
         <HomepageRestrictedCard v-else />
@@ -10,14 +10,15 @@
 </template>
 
 <script setup>
-import { useOnline } from "@vueuse/core"
-
+import { Network } from '@capacitor/network';
 const route = useRoute()
 const instance = useInstanceManager()
 const cookie = useCookie("installed", { expires: new Date('9999-12-31') })
-const online = useOnline()
+const online = ref((await Network.getStatus()).connected)
 const songManager = useSongManager()
-
+Network.addListener('networkStatusChange', status => {
+    online.value = status.connected
+});
 if (route.query.standalone === 'true') {
     cookie.value = true
 }
