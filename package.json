@@ -11,6 +11,7 @@
     "mobile:android": "cap sync android"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^8.3.3",
     "@kevinmarrec/nuxt-pwa": "^0.17.0",
     "@nuxt/test-utils": "^3.14.0",
