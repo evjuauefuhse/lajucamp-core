@@ -82,13 +82,14 @@
             </InstanceSwitcherMenuEntry>
         </div>
         <div class="flex flwx-row justify-center">
-            <a :href="config.public.imprint" class="btn btn-ghost btn-sm">Impressum</a>
-            <a :href="config.public.privacy" class="btn btn-ghost btn-sm">Datenschutz</a>
+		<btn @click="Browser.open({url: config.public.imprint, presentationStyle: 'popover'})" class="btn btn-ghost btn-sm">Impressum</btn>
+		<btn @click="Browser.open({url: config.public.privacy, presentationStyle: 'popover'})" class="btn btn-ghost btn-sm">Datenschutz</btn>
         </div>
     </div>
 </template>
 
 <script setup>
+import { Browser } from '@capacitor/browser';
 const instanceDropdown = ref(false)
 const emit = defineEmits("close")
 const config = useRuntimeConfig()
@@ -97,6 +98,7 @@ const props = defineProps(["admin"])
 const instances = useInstanceManager()
 
 const instanceImage = ref("")
+
 onMounted(() => {
     if("icon" in instances.instance()) {
         instanceImage.value = instances.instance().icon
