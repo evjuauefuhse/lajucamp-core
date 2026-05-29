@@ -1,15 +1,18 @@
 export const useVersion = () => {
-    return "2.0.0 Alpha"
+    return "2.0.0"
 }
 
 export const useChangelog = () => {
     return [
         {
-            date: "XX.XX.2024: Version 2.0.0",
+            date: "Mai 2026: Version 2.0.0",
             changes: [
                 "Feat: Mehrere Instanzen können genutzt  werden",
                 "Feat: Die App kann nun auf Desktop und Tablet Geräten genutzt werden.",
-                "Feat: Beim ersten Start erscheint ein Einrichtungsassistent."
+                "Feat: Beim ersten Start erscheint ein Einrichtungsassistent.",
+		"Feat: Instanzen können jetzt Symbole haben.",
+		"Feat: Orte können Bilder enthalten, um auf den Veranstaltungsort hinzuweisen.",
+		"Feat: Offline Support für IOS und Android",
             ]
         },
         {
