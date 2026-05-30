@@ -17,6 +17,24 @@ logs
 .fleet
 .idea
 
+# Android build artifacts and common files
+android/.gradle/
+android/build/
+android/app/build/
+android/*.apk
+android/*.ap_
+android/*.aab
+android/*.aar
+android/*.dex
+android/*.class
+android/local.properties
+android/.idea/
+android/.externalNativeBuild/
+android/.cxx/
+android/captures/
+android/*.iml
+android/*.hprof
+
 # Local env files
 .env
 .env.*
