@@ -18,6 +18,7 @@ const config: CapacitorConfig = {
     },
     StatusBar: {
       style: 'dark',
+      overlaysWebView: false,
     },
   },
 };
