@@ -6,7 +6,7 @@
           <div class="max-w-md">
             <h1 class="text-2xl">Diese Bildschirmgröße wird nicht unterstützt.</h1>
             <p class="py-6">
-              Bitte rufe diese Seite auf einem Desktop-Computer auf.
+	    Bitte rufe diese Seite auf einem Desktop-Computer auf.
             </p>
           </div>
         </div>
@@ -91,6 +91,8 @@
 </template>
 
 <script setup>
+import { breakpointsTailwind, useBreakpoints } from "@vueuse/core"
+
 const router = useRouter();
 const instance = useInstanceManager()
 const route = useRoute();
@@ -100,7 +102,8 @@ const authData = ref();
 const username = ref("");
 const password = ref("");
 const runtimeConfig = useRuntimeConfig();
-
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const phone = breakpoints.smaller('lg');
 const loading = ref(false);
 definePageMeta({
   layout: "blank",
@@ -130,4 +133,10 @@ async function login() {
     }
   }
 }
+
+onMounted(() => {
+    if(window.innerWidth < breakpointsTailwind.lg) {
+	navigateTo("/");
+    }
+})
 </script>
