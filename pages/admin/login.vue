@@ -108,6 +108,9 @@ const loading = ref(false);
 definePageMeta({
   layout: "blank",
 });
+if(window.innerWidth < breakpointsTailwind.lg) {
+    navigateTo("/");
+}
 
 const passwordInput = ref(null);
 
@@ -134,9 +137,4 @@ async function login() {
   }
 }
 
-onMounted(() => {
-    if(window.innerWidth < breakpointsTailwind.lg) {
-	navigateTo("/");
-    }
-})
 </script>
