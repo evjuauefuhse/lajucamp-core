@@ -270,6 +270,13 @@ export const useContributors = () => {
             insta: "https://instagram.com/annimation85",
             color: "bg-orange-400",
         },
+	{
+	    initials: "CE",
+	    name: "Charlotte Eichel",
+	    tag: "EvJu Hannover",
+	    job: "Qualitätssicherung IOS",
+	    color: "bg-blue-400"
+	},
         {
             initials: "CL",
             name: "Christian Lerch",
@@ -297,7 +304,7 @@ export const useContributors = () => {
             initials: "SS",
             name: "Sophie Schulz",
             tag: "EvJu Burgdorf",
-            job: "Begleitung für IOS",
+            job: "Qualitätssicherung IOS",
             color: "bg-green-600"
         },
     ]
