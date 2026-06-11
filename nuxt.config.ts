@@ -114,7 +114,8 @@ export default defineNuxtConfig({
       fallbacksongs: false,
       privacy: '',
       imprint: '',
-      instancelist: ''
+      instancelist: '',
+      overrideUrl: ''
     }
   },
   pwa: {

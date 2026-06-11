@@ -1,9 +1,15 @@
 export const useVersion = () => {
-    return "2.0.0"
+    return "2.0.1"
 }
 
 export const useChangelog = () => {
     return [
+	{
+	    date: "11. Juni 2026: Version 2.0.1",
+	    changes: [
+		"Fix: die App verwendet jetzt intern die richtigen API Endpoints."
+	    ]
+	},
         {
             date: "Mai 2026: Version 2.0.0",
             changes: [
