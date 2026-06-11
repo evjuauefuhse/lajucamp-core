@@ -2,7 +2,7 @@
     <dialog id="more_dialog" class="modal modal-bottom">
         <LayoutMoreMenu v-drag="onDrag" @close="closeMoreDialog()" />
     </dialog>
-    <div class="btm-nav">
+    <div :class="assembleNavbarClass()">
         <router-link :class="(routes.home.includes($route.name)) ? 'active' : 'not_active'" to="/">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
@@ -62,6 +62,8 @@
 </template>
 
 <script setup>
+const { isIos } = useDevice()
+
 function onDrag(state) {
     if (state.dragging === true && state.down === true && state.distance > 50) {
         closeMoreDialog()
@@ -96,6 +98,15 @@ const checkMusicAccess = () => {
     if (cookie.value === undefined) return false
     const data = hackyCookieWorkaround()
     return data.some(obj => obj.allowMusic === true)
+}
+
+const assembleNavbarClass = () => {
+    if(isIos) {
+	console.debug("This is an IOS Device!")
+	return "btm-nav mb-2"
+    }
+    console.debug("This is not IOS!!")
+    return "btm-nav"
 }
 
 </script>

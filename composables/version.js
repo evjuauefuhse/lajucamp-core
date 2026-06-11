@@ -7,7 +7,8 @@ export const useChangelog = () => {
 	{
 	    date: "11. Juni 2026: Version 2.0.1",
 	    changes: [
-		"Fix: die App verwendet jetzt intern die richtigen API Endpoints."
+		"Fix: die App verwendet jetzt intern die richtigen API Endpoints.",
+		"Fix: Auf IOS überdeckt das System UI die Navbar nicht mehr"
 	    ]
 	},
         {
